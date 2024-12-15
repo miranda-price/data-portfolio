@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Projects - Childhood Vegetarianism and Height</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="override.css">
+</head>
+
+<header>
+<nav class="navbar navbar-dark bg-primary" id="main-nav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Miranda Price</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Resume</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+</nav>
+</header>
+
+<div class="container">
+<body>
+    <div class="row">
+        <div class="col-4">
+            <nav id="nested-nav" class="fixed-top">
+                <nav class="nav nav-pills flex-column">
+                    <a class="navbar-brand" href="#childhood-vegetarianism-and-height">Childhood Vegetarianism and Height</a>
+                    <a class="nav-link" href="#define-the-problem">Define the Problem</a>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ms-3 my-1" href="#dataset">Dataset</a>
+                        <a class="nav-link ms-3 my-1" href="#restrictions">Restrictions</a>
+                    </nav>
+                    <a class="nav-link" href="#variables">Variables</a>
+                    <a class="nav-link" href="#missing-data">Missing Data</a>
+                    <a class="nav-link" href="#univariate-summaries">Univariate Summaries</a>
+                    <a class="nav-link" href="#bivariate-summaries">Bivariate Summaries</a>
+                    <a class="nav-link" href="#inference-tests">Inference Tests</a>
+                    <a class="nav-link" href="#findings-and-insights">Findings and Insights</a>
+                    <a class="nav-link" href="#future-studies">Future Studies</a>
+                </nav>
+            </nav>
+        </div>
+
+        <div class="col-8">
+          <h1 id="childhood-vegetarianism-and-height">Childhood Vegetarianism and Height</h1>
+          <p>Group final data analysis project completed for STAT 212: Applied Statistics</p>
+          <p><strong>Tools:</strong> Rstudio</p>
+          <h2 id="define-the-problem">Define the Problem</h2>
+          <p><strong>Is there is a relationship between being vegetarian and a student&#39;s height?</strong></p>
+          <h3 id="dataset">Dataset</h3>
+          <p>dap_data.csv, randomly selected subset from the Census at Schools dataset<br>62 fields, 250 observations</p>
+          <h3 id="restrictions">Restrictions</h3>
+          <ul>
+          <li>Gender was limited to female students to avoid differences in the average height or the level of vegetarianism between male and female students affecting the findings.</li>
+          <li>Age was limited to between 11 and 14 inclusive.  High school vegetarians could have become vegetarian after they were done growing so their vegetarianism would have no impact on height.  Grades 6-8 are also when many students experience growth spurts so the difference in height between the two groups would be more pronounced if vegetarianism is related to height.</li>
+          </ul>
+          <h2 id="variables">Variables</h2>
+          <p><em>Note: There are 62 fields in the dataset but only 2 relevant fields for this study</em></p>
+          <ul>
+          <li>Vegetarian (&#39;Yes&#39;, &#39;No&#39;): categorical and nominal</li>
+          <li>Height_cm: quantitative and continuous</li>
+          </ul>
+          <h2 id="missing-data">Missing Data</h2>
+          <p>There are 4 observations missing a value for the vegetarian category.</p>
+          <p>These observations were kept for univariate summaries of the height variable and eliminated for all other statistical analysis.</p>
+          <h2 id="univariate-summaries">Univariate Summaries</h2>
+          <ul>
+          <li>Vegetarian<ul>
+          <li>Yes: 16 observations (6.50%)</li>
+          <li>No: 230 observations (93.50%)</li>
+          </ul>
+          </li>
+          <li>Height (cm)<ul>
+          <li>Mean: 156.23</li>
+          <li>Standard Deviation: 10.82</li>
+          <li>Median: 158</li>
+          <li>Minimum: 96</li>
+          <li>Maximum: 189</li>
+          <li>IQR: 13</li>
+          <li>1st Quartile: 150</li>
+          <li>3rd Quartile: 163</li>
+          </ul>
+          </li>
+          </ul>
+          <img src="content/veg-height-histogram.png" alt="histogram showing height distribution as described in the list above">
+          <pre><code># number of vegetarian and non-vegetarian students
+          table(<span class="hljs-name">data</span>$Vegetarian)
+          
+          # sample height distribution
+          sd(<span class="hljs-name">data</span>$Height_cm)
+          range(<span class="hljs-name">data</span>$Height_cm)
+          summary(<span class="hljs-name">data</span>$Height_cm)
+          hist(<span class="hljs-name">data</span>$Height_cm,
+               xlab='Height (<span class="hljs-name">cm</span>)', ylab='Number of students',
+               main='Histogram of Students\' Height')
+          abline(<span class="hljs-name">v=mean</span>(<span class="hljs-name">data</span>$Height_cm), col='red')
+          </code></pre><h3 id="outliers">Outliers</h3>
+          <ul>
+          <li>Outliers are any observation with a height below 140.5cm or over 182.5</li>
+          <li>There were outliers for height at 96, 122, 124, 124, 127, 133, 135, 136, 137, 138, 140, 140, 140, 140, 140, 140, and 189</li>
+          <li>The 6 observations with a height of 140 cm are just over the limit to qualify as an outlier using the interquartile range. </li>
+          <li>All outliers were non-vegetarian students.  </li>
+          <li>With the exception of one 13 year old and three 14 year olds, all of the lower outliers were 11 or 12 years old.  This may explain why these particular students were outliers, considering they were on the lower end of the included age range for the dataset.</li>
+          </ul>
+          <h2 id="bivariate-summaries">Bivariate Summaries</h2>
+          <ul>
+          <li>Mean height of vegetarian students: 156cm</li>
+          <li>Mean height of non-vegetarian students: 158cm</li>
+          <li>Non-vegetarian students had a much wider range for height and more outliers than vegetarian students</li>
+          </ul>
+          <img src="content/veg-height-boxplots.png" alt="side-by-side box plots comparing height distribution of vegetarian and non vegetarian children as described above">
+          <pre><code><span class="hljs-comment"># height distribution for two groups</span>
+          boxplot(data$Height_cm ~ data$Vegetarian, <span class="hljs-attr">main</span> = <span class="hljs-string">"Height of Vegetarian and Non-Vegetarian Female Students Ages 11-14"</span>,
+                  <span class="hljs-attr">xlab=NULL,</span> <span class="hljs-attr">ylab</span> = <span class="hljs-string">"Height (cm)"</span>, <span class="hljs-attr">names=</span> c(<span class="hljs-string">"Non-Vegetarian"</span>, <span class="hljs-string">"Vegetarian"</span>))
+          </code></pre><h2 id="inference-tests">Inference Tests</h2>
+          <p>A two-sample mean test was performed with a significance level of 0.05. </p>
+          <pre><code><span class="hljs-meta"># inference test</span>
+          <span class="hljs-meta"># calculate sample statistics</span>
+          <span class="hljs-title">n</span>&lt;- tapply(<span class="hljs-class"><span class="hljs-keyword">data</span>$<span class="hljs-type">Height_cm</span>, <span class="hljs-keyword">data</span>$<span class="hljs-type">Vegetarian</span>, <span class="hljs-type">FUN</span>=length)</span>
+          <span class="hljs-title">n</span>.non&lt;-<span class="hljs-keyword">as</span>.numeric(gsub(<span class="hljs-string">"No"</span>,<span class="hljs-string">""</span>, n[<span class="hljs-number">1</span>]))
+          <span class="hljs-title">n</span>.veg&lt;-<span class="hljs-keyword">as</span>.numeric(gsub(<span class="hljs-string">"Yes"</span>,<span class="hljs-string">""</span>, n[<span class="hljs-number">2</span>]))
+          <span class="hljs-title">means</span>&lt;- tapply(<span class="hljs-class"><span class="hljs-keyword">data</span>$<span class="hljs-type">Height_cm</span>, <span class="hljs-keyword">data</span>$<span class="hljs-type">Vegetarian</span>, <span class="hljs-type">FUN</span>=mean)</span>
+          <span class="hljs-title">xbar</span>.non&lt;-<span class="hljs-keyword">as</span>.numeric(gsub(<span class="hljs-string">"No"</span>,<span class="hljs-string">""</span>, means[<span class="hljs-number">1</span>]))
+          <span class="hljs-title">xbar</span>.veg&lt;-<span class="hljs-keyword">as</span>.numeric(gsub(<span class="hljs-string">"Yes"</span>,<span class="hljs-string">""</span>, means[<span class="hljs-number">2</span>]))
+          <span class="hljs-title">sd</span>&lt;- tapply(<span class="hljs-class"><span class="hljs-keyword">data</span>$<span class="hljs-type">Height_cm</span>, <span class="hljs-keyword">data</span>$<span class="hljs-type">Vegetarian</span>, <span class="hljs-type">FUN</span>=sd)</span>
+          <span class="hljs-title">sd</span>.non&lt;-<span class="hljs-keyword">as</span>.numeric(gsub(<span class="hljs-string">"No"</span>,<span class="hljs-string">""</span>, sd[<span class="hljs-number">1</span>]))
+          <span class="hljs-title">sd</span>.veg&lt;-<span class="hljs-keyword">as</span>.numeric(gsub(<span class="hljs-string">"Yes"</span>,<span class="hljs-string">""</span>, sd[<span class="hljs-number">2</span>]))
+          <span class="hljs-meta"># calculate test statistic</span>
+          <span class="hljs-title">se</span> &lt;- sqrt(sd.non^<span class="hljs-number">2</span>/n.non + sd.veg^<span class="hljs-number">2</span>/n.veg) # standard error
+          <span class="hljs-title">se</span>
+          <span class="hljs-title">t</span>.star &lt;- ((xbar.veg-xbar.non)<span class="hljs-number">-0</span>)/se
+          <span class="hljs-title">t</span>.star
+          <span class="hljs-meta"># calculate p value</span>
+          <span class="hljs-title">min</span>(n.non<span class="hljs-number">-1</span>, n.veg<span class="hljs-number">-1</span>) # degrees <span class="hljs-keyword">of</span> freedom
+          <span class="hljs-title">pval</span> &lt;- <span class="hljs-number">2</span>*pt(-abs(t.star), df = min(n.non<span class="hljs-number">-1</span>, n.veg<span class="hljs-number">-1</span>))
+          <span class="hljs-title">pval</span>
+          </code></pre><p>The test statistic was 0.71 for a difference in means of 2 and a standard error of 2.4803.  The resulting p value with 15 degrees of freedom was 0.4890, which was less than the significance level.</p>
+          <p>We must fail to reject the null hypothesis.  There is insufficient evidence to conclude that vegetarian students have a different average height than non-vegetarian students, at least for female students between the ages of 11 and 14.</p>
+          <p>The 95% confidence interval for the two-sample mean was suggests that the true difference between vegetarian and non-vegetarian students in our chosen demographic is between -3.5273cm and 7.0458cm.</p>
+          <pre><code># confidence interval
+          pe &lt;- xbar.veg - xbar.non
+          crit.val &lt;- qt(<span class="hljs-number">1</span><span class="hljs-number">-0.05</span>/<span class="hljs-number">2</span>, df = min(n.non<span class="hljs-number">-1</span>, n.veg<span class="hljs-number">-1</span>))
+          se &lt;- sqrt(sd.non^<span class="hljs-number">2</span>/n.non + sd.veg^<span class="hljs-number">2</span>/n.veg)
+          margin &lt;- crit.val * se
+          pe - margin # low end
+          pe + margin # high end
+          </code></pre><h2 id="findings-and-insights">Findings and Insights</h2>
+          <p>The average height of vegetarian students sampled was 156cm compared to an average height of 158cm for non-vegetarians.  However, our inference tests indicate that there is not enough evidence to conclude that this difference holds for the population as a whole.</p>
+          <p>The confidence interval containing both positive and negative values indicates that the average height of middle school female vegetarians could be either shorter, taller, or the same as their non-vegetarian classmates.</p>
+          <p><strong>In conclusion, the data does not indicate that a vegetarian diet has an impact on a child&#39;s growth, at least for female children between the ages of 11 and 14.</strong></p>
+          <h2 id="future-studies">Future Studies</h2>
+          <p>There are two obvious shortcomings to this study.  Firstly, there were significantly fewer vegetarian students than non-vegetarian students in our dataset.  Secondly, our study did not look at how long each student had been a vegetarian.  A student that has been vegetarian for a decade is more likely to have their height affected by the diet than a student that has only been a vegetarian for a year.  Further studies could take into account how long the student has been vegetarian and used a matched pair system to avoid these shortcomings. </p>
+          
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+                target: '#nested-nav'
+            })
+        });
+    </script>
+</body>
+</div>
+</html>
