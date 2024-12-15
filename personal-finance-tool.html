@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Projects - Personal Finance Tracker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="override.css">
+</head>
+
+<header>
+<nav class="navbar navbar-dark bg-primary" id="main-nav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Miranda Price</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Resume</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+</nav>
+</header>
+
+<div class="container">
+<body>
+    <div class="row">
+        <div class="col-4">
+            <nav id="nested-nav" class="fixed-top">
+                <nav class="nav nav-pills flex-column">
+                    <a class="navbar-brand" href="#personal finance tracker">Personal Finance Tracker</a>
+                    <a class="nav-link" href="#define-the-problem">Define the Problem</a>
+                    <a class="nav-link" href="#monthly-budget-template">Monthly Budget Template</a>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ms-3 my-1" href="#categories">Categories</a>
+                        <a class="nav-link ms-3 my-1" href="#personal budget overview">Personal Budget Overview</a>
+                        <a class="nav-link ms-3 my-1" href="#personal budget summary">Personal Budget Summary</a>
+                    </nav>
+                    <a class="nav-link" href="#finance-trends">Finance Trends</a>
+                    <nav class="nav nav-pills flex-column">
+                        <a class="nav-link ms-3 my-1" href="#monthly-summaries">Monthly Summaries</a>
+                        <a class="nav-link ms-3 my-1" href="#finances-by-month">Finances by Month</a>
+                        <a class="nav-link ms-3 my-1" href="#visualizations">Visualizations</a>
+                    </nav>
+                </nav>
+            </nav>
+        </div>
+
+        <div class="col-8">
+            <h1 id="personal-finance-tracker">Personal Finance Tracker</h1>
+            <p><strong>Tools: Excel</strong></p>
+            <h2 id="define-the-problem">Define the Problem</h2>
+            <h3 id="the-problem-">The Problem:</h3>
+            <p>People need a way to track their income and expenses in order to make good financial decisions.</p>
+            <h3 id="the-solution-">The Solution:</h3>
+            <p>A personal finance tracker that features:</p>
+            <ul>
+            <li>A way to log income and expenses by category for each month</li>
+            <li>Comparisons between expected and actual income/expenses</li>
+            <li>An analysis of how finances change over time</li>
+            <li>Trends represented with easy to understand visualizations</li>
+            </ul>
+            <h2 id="monthly-budget-template">Monthly Budget Template</h3>
+            <h3 id="categories">Categories</h3>
+            <p>A good budget template should make distinctions between different sources of income and types of expenses to better track spending habits.  A Categories sheet was created to split finances into categories and subcategories.</p>
+            <p>The main categories were:</p>
+            <ul>
+            <li>Income (salary, interest, etc.)</li>
+            <li>Necessities (groceries, transportation, etc.)</li>
+            <li>Occasional Expenses (restaurants, hobbies, etc.)</li>
+            <li>Recurring Payments (rent, utilities, etc.)</li>
+            <li>Insurance</li>
+            <li>Other Expenses</li>
+            </ul>
+            <h3 id="personal-budget-overview">Personal Budget Overview</h3>
+            <p>Each category has its own table that tracks the predicted amount, actual amount, and the difference between those two amounts for each subcategory.  The tables also have a row that calculates the subtotal of each measure for that particular category.  The difference column is automatically calculated, and its subtotal is highlighted green or red based on whether that category was on target or not for that month.</p>
+            <h3 id="personal-budget-summary">Personal Budget Summary</h3>
+            <p>The personal budget summary was designed to make it easy to track the money coming in and being spent for that month and give a breakdown of spending by category.  The summary also calculates the difference between the project totals and actual totals to suggest which categories need to be adjusted in the budget.  Important values like balance and the difference between expected and actual totals are colored green or red to give a good idea of the finances for the month without needing to carefully read each value.</p>
+            <p>The first table of the personal budget summary compares the predicted and actual total income, total expenses, and balance, as well as the difference between the predicted and actual totals of each.  Cells in the difference row and balance column will appear green if the amount is at least $0 and red if the amount is in the negatives.</p>
+            <p>The second table of the personal budget summary compares the predicted and actual totals for each category of expenses, as well as the difference between predicted and actual.  Cells in the difference column are red if in the negatives, and green if the amount is at least $0.</p>
+            <h2 id="finance-trends">Finance Trends</h3>
+            <h3 id="monthly-summaries">Monthly Summaries</h4>
+            <p>Each monthly budget has a row near the bottom that represents the monthly summary.  The monthly summary can be copy and pasted into the Summaries sheet to be analyzed in the Finance Trends sheet.</p>
+            <h3 id="finances-by-month">Finances by Month</h4>
+            <p>The finances by month table tracks the actual income, expenses, and balance of each month.  There is also a column that shows how the running balance changes with time to track how much money has been saved or lost over a long period of time.</p>
+            <h3 id="visualizations">Visualizations</h4>
+            <p>The first visualization is a stacked line graph that compares the total income and total expenses from month-to-month.</p>
+            <p>The second visualization is a line graph of the running balance over the months.  The visualization also includes a trend line that forecasts the expected running total for the next two months.</p>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+                target: '#nested-nav'
+            })
+        });
+    </script>
+</body>
+</div>
+</html>
