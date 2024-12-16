@@ -38,14 +38,25 @@
 <body>
 <div class="row">
     <div class="col-md-3 column" id="filters">
-        <h3>Filter</h3>
+        <h3>Filters</h3>
+        <div id="checked-filter-buttons" class="d-flex flex-wrap">
+        </div>
+        <hr id="filter-divider">
+        <div id="unchecked-filter-buttons" class="d-flex flex-wrap">
+            <button type="button" class="btn btn-secondary project-filter" id="python-filter">Python</button>
+            <button type="button" class="btn btn-secondary project-filter" id="sql-filter">SQL</button>
+            <button type="button" class="btn btn-secondary project-filter" id="powerbi-filter">Power BI</button>
+            <button type="button" class="btn btn-secondary project-filter" id="tableau-filter">Tableau</button>
+            <button type="button" class="btn btn-secondary project-filter" id="r-filter">R</button>
+            <button type="button" class="btn btn-secondary project-filter" id="excel-filter">Excel</button>
+            <button type="button" class="btn btn-secondary project-filter" id="pandas-filter">Pandas</button>
+        </div>
     </div>
     <div class="col-md-9 column" id="projects">
-    <div class="card projects-card">
-        <img src="..." class="card-img-top" alt="...">
+    <div class="card projects-card excel-project">
+        <img src="content/finance-tool-card.png" class="card-img-top" alt="An excel sheet with a table showing income, expenses, balance and running balance by month with corresponding charts to the right.">
         <div class="card-body">
-          <h3 class="card-title">Personal Finance Tracker</h3>
-          <h4>Tools: Excel</h4>
+          <div class="d-flex justify-content-between"><h3 class="card-title">Personal Finance Tracker</h3><h4>Excel</h4></div>
           <p class="card-text">A personal finance management tool that allows people to track monthly income and expenses in detail and analyzes financial trends over time.</p>
           <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#personal-finance-tracker-modal">
             Read more
@@ -53,7 +64,7 @@
         </div>
       </div>
 
-      <div class="modal fade modal-xl excel-project" id="personal-finance-tracker-modal" tabindex="-1" aria-labelledby="Personal Finance Tracker Project Writeup" aria-hidden="true">
+      <div class="modal fade modal-xl" id="personal-finance-tracker-modal" tabindex="-1" aria-labelledby="Personal Finance Tracker Project Writeup" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
               <div class="modal-header">

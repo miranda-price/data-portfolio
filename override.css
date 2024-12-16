@@ -2,3 +2,9 @@
     width: 80%;
     margin: 10px auto;
 }
+
+.project-filter {
+    min-width: 60px;
+    margin: 5px;
+    border-radius: 16px;
+}
