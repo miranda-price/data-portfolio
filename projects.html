@@ -11,7 +11,7 @@
 </head>
 
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Miranda Price</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@
         <img src="content/finance-tool-card.png" class="card-img-top" alt="An excel sheet with a table showing income, expenses, balance and running balance by month with corresponding charts to the right.">
         <div class="card-body">
           <div class="d-flex justify-content-between"><h3 class="card-title">Personal Finance Tracker</h3><h4>Excel</h4></div>
-          <p class="card-text">A personal finance management tool that allows people to track monthly income and expenses in detail and analyzes financial trends over time.</p>
+          <p class="card-text">A personal finance management tool that allows people to track monthly income and expenses in detail and analyzes financial trends over time</p>
           <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#personal-finance-tracker-modal">
             Read more
           </button>
@@ -126,11 +126,138 @@
           </div>
       </div>
 
+      <div class="card projects-card -project">
+        <img src="content/nyc-trees-dashboard.png" class="card-img-top" alt="tableau dashboard with visualisations of data regarding trees and income for NYC neightborhoods">
+        <div class="card-body">
+             <div class="d-flex justify-content-between"><h3 class="card-title">NYC Trees and Income by Neighborhood</h3><h4>Tableau</h4></div>
+             <p class="card-text">A visual look at the relationship between income and the number and quality of trees in New York boroughs</p>
+             <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#nyc-trees-modal">
+                 Read more
+             </button>
+         </div>
+     </div>
+ 
+     <div class="modal fade modal-xl" id="nyc-trees-modal" tabindex="-1" aria-labelledby=" Project Writeup" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-scrollable">
+             <div class="modal-content">
+               <div class="modal-header">
+                 <h3 class="modal-title" id="exampleModalLabel">NYC Trees and Income by Neighborhood</h3>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+                <img src="content/nyc-trees-dashboard.png" class="shadow" alt="tableau dashboard with visualisations of data regarding trees and income for NYC neightborhoods" width="100%">
+                <p><strong>Tools:</strong> Tableau</p>
+                <h2 id="define-the-problem">Define the Problem</h2>
+                <p><strong>How do the number of trees and quality of trees vary by borough in NYC, and does income appear to be related?</strong></p>
+                <p><strong>Datasets:</strong> </p>
+                <ul>
+                <li>tree-census-NYC_2015.csv  <ul>
+                <li>16 fields</li>
+                <li>683788 observations</li>
+                </ul>
+                </li>
+                <li>income-NYC_2015.csv<ul>
+                <li>8 fields</li>
+                <li>218 observations</li>
+                </ul>
+                </li>
+                </ul>
+                <h2 id="variables">Variables</h2>
+                <h3 id="tree-census-dataset">Tree Census Dataset</h3>
+                <h4 id="quantitative">Quantitative</h4>
+                <ul>
+                <li>Tree Dbh (height of tree, in feet)</li>
+                <li>Stump Diam (tree diameter, indicates age, in inches)</li>
+                <li>Latitude (decimal representation)</li>
+                <li>Longitude (decimal representation)</li>
+                </ul>
+                <h4 id="qualitative">Qualitative</h4>
+                <ul>
+                <li>Tree Id (six-digit number)</li>
+                <li>Status (&#39;Alive&#39;, &#39;Stump&#39;, &#39;Dead&#39;)</li>
+                <li>Health (&#39;Good&#39;, &#39;Fair&#39;, &#39;Poor&#39;)</li>
+                <li>Spc Latin (scientific name of tree species)</li>
+                <li>Spc Common (common name of tree species)</li>
+                <li>Address</li>
+                <li>Zipcode</li>
+                <li>Borocode (1-5 corresponding to &#39;Manhattan&#39;, &#39;Bronx&#39;, &#39;Brooklyn&#39;, &#39;Queens&#39;, &#39;Staten Island&#39;)</li>
+                <li>Borough (name of borough)</li>
+                <li>Nta Name (name of neighborhood)</li>
+                <li>State</li>
+                </ul>
+                <p><em>Note: F1 column is the table&#39;s primary key and was not analyzed along with the other variables</em></p>
+                <h3 id="income-dataset">Income Dataset</h3>
+                <h4 id="quantitative">Quantitative</h4>
+                <ul>
+                <li>Total Income ($)</li>
+                <li>Total Income MOE (margin of error, in $)</li>
+                <li>Median Income ($)</li>
+                <li>Median Income MOE (margin of error, in $)</li>
+                <li>Mean Income ($)</li>
+                <li>Mean Income MOE (margin of error, in $)</li>
+                </ul>
+                <h4 id="qualitative">Qualitative</h4>
+                <ul>
+                <li>Geographical Id (8600000US + zip code)</li>
+                <li>Zipcode</li>
+                </ul>
+                <h2 id="missing-data">Missing Data</h2>
+                <p>A large number of observations have a stump diameter of 0 inches, regardless of health or status.  This suggests that the data is missing, so these observations will be eliminated for any analysis related to tree stump diameter to avoid skewing results.</p>
+                <p>There were also several null values in the health column, which should be removed for analysis for the same reason as the stump diameter column.</p>
+                <h2 id="visualize-data-relationships">Visualize Data Relationships</h2>
+                <h3 id="income-by-location">Income by Location</h3>
+                <img src="content/nyc-trees-income-boxplots.png" class="shadow" alt="side-by-side boxplots of income for the five New York boroughs as described below" width="100%">
+                <p>We can compare the income of each borough by side-by-side box plots.</p>
+                <ul>
+                <li>Manhattan has the highest average income as well as the highest incomes in general.</li>
+                <li>The Bronx has the lowest average income and has some of the lowest incomes along with Brooklyn.</li>
+                <li>Manhattan has the greatest spread of income, while Staten Island has a narrow range and has middle 50% of its observations within a $20k range</li>
+                </ul>
+                <img src="content/nyc-trees-income-map.png" class="shadow" alt="heat map of average income by zip code for nyc" height="300px">
+                <p>Mapping the average income of each zip code supports these observations and lets us see how much income in each borough varies by neighborhood.</p>
+                <h3 id="trees-by-location">Trees by Location</h3>
+                <h4 id="number-of-trees">Number of Trees</h4>
+                <img src="content/nyc-trees-tree-count.png" class="shadow" alt="bar chart showing number of trees in each borough as described below" width="100%">
+                <p>Based on this bar chart, Queens has the most trees and Brooklyn has the second highest number of trees.  Manhattan has the least number of trees, only a fifth of the number Queens has.  The Bronx and Staten Island both have more trees than Manhattan, but not nearly as many as Brooklyn.</p>
+                <img src="content/nyc-trees-tree-map.png" class="shadow" alt="map showing the concentration of trees by zip code for nyc" height="300px">
+                <p>Mapping the trees by zip code generally supports these findings, and also reveals that Staten Island has two areas with a large amount of trees and not many trees anywhere else.</p>
+                <h4 id="health-of-trees">Health of Trees</h4>
+                <img src="content/nyc-trees-tree-health.png" class="shadow" alt="bar chart showing the health of trees in each borough as described below" height="300px">
+                <img src="content/nyc-trees-alive-dead.png" class="shadow" alt="bar chart showing number of alive versus dead trees in each borough as described below" width="100%">
+                <p>Based on the bar charts above, we can make some observations:</p>
+                <ul>
+                <li>The majority of trees are alive and in good health in every borough</li>
+                <li>The proportion of live to dead trees is fairly consistent by borough, with the exception of Staten Island having a smaller percentage of dead trees and Queens having a slightly higher percentage of dead trees</li>
+                <li>Staten Island and the Bronx have very few trees in poor health</li>
+                </ul>
+                <img src="content/nyc-trees-stump-diam.png" class="shadow" alt="diagram showing average stump diameter of trees in each borough as described below" height="300px">
+                <p>Tree age is measured by counting the rings on the stump, so tree stump diameter can be used to compare the age of trees.  Older trees would indicate healthier conditions for the trees over a long period of time.</p>
+                <ul>
+                <li>Queens and Brooklyn have the largest tree stumps on average, indicating that the trees there are generally older</li>
+                <li>Staten Island and the Bronx have the next largest tree stumps</li>
+                <li>Manhattan has the smallest tree stumps, therefore the youngest trees</li>
+                </ul>
+                <h3 id="trees-and-income">Trees and Income</h3>
+                <img src="content/nyc-trees-scatterplot.png" class="shadow" alt="scatter plot with a line of regression showing relationship between average income and number of trees by bourough as described below" height="300px">
+                <p>Creating a scatter plot of average income of a borough compared to the number of trees reveals a negative relationship.  Plotting the line of the linear regression we can see that as income increases the number of trees decreases, however, we can also see that this line only fits three of the boroughs well and that Queens and the Bronx do not fit this model.</p>
+                <h2 id="outliers">Outliers</h2>
+                <p>The income box plot reveals outliers on the higher end for Brooklyn, Queens and Manhattan.</p>
+                <p>There is one observation in Manhattan with a value of $400K, which is $100K more than the next highest income.</p>
+                <h2 id="findings-and-insights">Findings and Insights</h2>
+                <p>There are tangible difference in the number of trees, and the health of trees to a lesser extent, between the different NYC boroughs.  There are also significant differences in average income and range of income for these boroughs.  </p>
+                <p>However, these differences in income do not seem to the related to the difference in trees.  The borough most trees and the borough with the healthiest trees were in the mid-range of incomes and the borough with the fewest trees was the one with the highest income.  Plotting income and number of trees did not show any relationship, which was confirmed by the linear regression model only fitting three of the five boroughs.</p>
+                <h3 id="future-studies">Future Studies</h3>
+                <p>Further studies should examine factors besides income that may be related to the number and health of trees in NYC.  Population and area of the boroughs were not included in the datasets and could influence the number of trees more than income.</p>
+             </div>
+             </div>
+         </div>
+     </div>
+
       <div class="card projects-card r-project">
         <img src="content/veg-height-card.png" class="card-img-top" alt="side-by-side box plots comparing height distribution of vegetarian and non vegetarian children">
         <div class="card-body">
           <div class="d-flex justify-content-between"><h3 class="card-title">Childhood Vegetarianism and Height</h3><h4>Rstudio</h4></div>
-          <p class="card-text">A statistical examination of the impact of childhood vegetarianism on growth outcomes.</p>
+          <p class="card-text">A statistical examination of the impact of childhood vegetarianism on growth outcomes</p>
           <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#veg-height-modal">
             Read more
           </button>
