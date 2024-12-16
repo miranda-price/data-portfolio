@@ -1,27 +1,4 @@
 .container {
-    position: relative;
-    top: 60px;
-}
-
-.list-group {
-    position: sticky;
-    top: 10px;
-}
-
-#main-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    width: 100%;
-    height: 55px;
-}
-
-#nested-nav {
-    width: 30%;
-    top: 55px;
-    padding-top: 5px;
-    padding-left: 10px;
-    height: calc(100vh - 55px);
-    overflow-y: scroll;
+    width: 80%;
+    margin: 10px auto;
 }
