@@ -64,7 +64,7 @@
             </div>
         </div>
     
-        <div class="modal fade modal-xl" id="telecom-churn-modal" tabindex="-1" aria-labelledby=" Project Writeup" aria-hidden="true">
+        <div class="modal fade modal-xl" id="telecom-churn-modal" tabindex="-1" aria-labelledby="Telecom Customer Project Writeup" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -535,6 +535,267 @@
                 </div>
             </div>
         </div>
+
+    <div class="card projects-card python-project pandas-project">
+        <img src="content/movies-profit-card.png" class="card-img-top" alt="scatter plots with regression lines showing relationships between movie profitability and worldwide gross and budget">
+        <div class="card-body">
+                <div class="d-flex justify-content-between"><h3 class="card-title">Movies&#39; Profitability and Popularity</h3><h4>Python, Pandas</h4></div>
+                <p class="card-text">Exploratory data analysis on how factors such as genre, studio type, and budget influence a movie's profitability and popularity.</p>
+                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#movies-profit-modal">
+                    Read more
+                </button>
+            </div>
+        </div>
+    
+        <div class="modal fade modal-xl" id="movies-profit-modal" tabindex="-1" aria-labelledby="Movie Profit and Popularity Project Writeup" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Movies&#39; Profitability and Popularity</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="content/movies-profit-card.png" class="shadow" alt="scatter plots with regression lines showing relationships between movie profitability and worldwide gross and budget" width="100%">
+                    <p><strong>Tools:</strong> Python, Pandas library</p>
+                    <h2 id="define-the-problem">Define the Problem</h2>
+                    <p><strong>What factors influence a movie&#39;s popularity and profitability?</strong></p>
+                    <p><strong>Dataset:</strong> Rotten-Tomatoes_hollywoods-most-profitable-stories.csv<br>8 fields, 74 observations</p>
+                    <h2 id="variables">Variables</h2>
+                    <h3 id="quantitative">Quantitative</h3>
+                    <ul>
+                    <li>Audience score % (Rotten Tomatoes audience score, % out of 100)</li>
+                    <li>Rotten Tomatoes % (Rotten Tomatoes audience score, % out of 100)</li>
+                    <li>Profitability (decimal representing ratio of gross and budget)</li>
+                    <li>Worldwide Gross (millions of dollars)</li>
+                    <li>Year</li>
+                    </ul>
+                    <h3 id="qualitative">Qualitative</h3>
+                    <ul>
+                    <li>Film (movie name)</li>
+                    <li>Genre (categorical)</li>
+                    <li>Lead Studio (categorical, studio name or independent)</li>
+                    </ul>
+                    <p><em>Note: There is no singular variable representing popularity, assume that movies with a higher gross and higher Rotten Tomatoes scores are more popular movies</em></p>
+                    <h2 id="missing-data">Missing Data</h2>
+                    <p>There are a total of 6 missing values affecting 5 observations</p>
+                    <ul>
+                    <li>Lead Studio: 1 missing value</li>
+                    <li>Audience score %: 1 missing value</li>
+                    <li>Profitability: 3 missing values</li>
+                    <li>Rotten Tomatoes %: 1 missing value<br>Movies from independent studios were impacted more than movies from major studios</li>
+                    </ul>
+                    <p>Looking at the values for the scores and profitability variables, there does not seem to be a clear pattern for estimating the values for a given observation.  The most appropriate way to handle missing data in this case would be to eliminate observations with missing values rather than using imputation strategies that are unlikely to accurately reflect the true values.  Given that only 5 of the 74 initial observations are affected, eliminating these observations will not have a great impact on the results of this exploratory data analysis, with the exception of any difference found between major and independent studios.</p>
+                    <h2 id="outliers">Outliers</h2>
+                    <p>The observation with a profitability of 66.93 (z-score of 7.39) was eliminated to give a more accurate analysis of general trends</p>
+                    <pre><code><span class="hljs-attr">df</span> = df[df[<span class="hljs-string">"Profitability"</span>]&lt;<span class="hljs-number">30</span>]
+                    </code></pre><h2 id="data-transformation">Data Transformation</h2>
+                    <ul>
+                    <li>Calculated new Budget field equivalent to Worldwide Gross divided by Profitability</li>
+                    <li>Calculated new AvgRating field that averages the critics&#39; and audience Rotten Tomatoes score for each movie</li>
+                    </ul>
+                    <pre><code>df[<span class="hljs-string">'Budget'</span>] = (df[<span class="hljs-string">'Worldwide Gross'</span>] / df[<span class="hljs-string">'Profitability'</span>])
+                    df[<span class="hljs-string">'AvgRating'</span>] = (df[<span class="hljs-string">'Audience  score %'</span>] + df[<span class="hljs-string">'Rotten Tomatoes %'</span>])/<span class="hljs-number">2</span>
+                    </code></pre><h2 id="visualize-data-relationships">Visualize Data Relationships</h2>
+                    <h3 id="genre">Genre</h3>
+                    <img src="content/movies-profit-genre-pie.png" class="shadow" alt="pie chart of different movie genres as described below" height="300px">
+                    <ul>
+                    <li>6 total genres: Comedy, Romance, Drama, Animation, Fantasy, Action</li>
+                    <li>Over half of all movies included were comedies</li>
+                    <li>Fantasy and action both only had one movie included</li>
+                    </ul>
+                    <pre><code>genre_count = df[<span class="hljs-string">"Genre"</span>].value_counts()
+                    <span class="hljs-built_in">print</span>(genre_count)
+                    genre_wedges = [x / len(df) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> genre_count.<span class="hljs-built_in">values</span>]
+                    genres = [<span class="hljs-string">"Comedy"</span>, <span class="hljs-string">"Romance"</span>, <span class="hljs-string">"Drama"</span>, <span class="hljs-string">"Animation"</span>, <span class="hljs-string">"Action"</span>, <span class="hljs-string">"Fantasy"</span>]
+                    plt.pie(genre_count, autopct=<span class="hljs-string">"%1.01f%%"</span>)
+                    plt.<span class="hljs-built_in">legend</span>(genres)
+                    plt.<span class="hljs-built_in">title</span>(<span class="hljs-string">"Movies by Genre"</span>)
+                    plt.<span class="hljs-built_in">show</span>()
+                    </code></pre><h4 id="genre-and-profitability">Genre and Profitability</h4>
+                    <img src="content/movies-profit-genre-profit.png" class="shadow" alt="bar chart of average profitability of different movie genres as described below" height="300px">
+                    <ul>
+                    <li>Romance and comedy were the most profitable genres</li>
+                    <li>Action and fantasy were the least profitable genres</li>
+                    </ul>
+                    <pre><code>genre_profit = df.groupby(<span class="hljs-string">"Genre"</span>)[<span class="hljs-string">"Profitability"</span>].<span class="hljs-built_in">mean</span>()
+                    genres = [<span class="hljs-string">"Action"</span>, <span class="hljs-string">"Animation"</span>, <span class="hljs-string">"Comedy"</span>, <span class="hljs-string">"Drama"</span>, <span class="hljs-string">"Fantasy"</span>, <span class="hljs-string">"Romance"</span>]
+                    plt.clf()
+                    plt.bar(genres, genre_profit, <span class="hljs-built_in">color</span>=<span class="hljs-string">"purple"</span>)
+                    plt.axhline(mean_profit, <span class="hljs-built_in">color</span>=<span class="hljs-string">"yellow"</span>)
+                    plt.<span class="hljs-built_in">legend</span>([<span class="hljs-string">"avg profitability"</span>])
+                    plt.<span class="hljs-built_in">ylabel</span>(<span class="hljs-string">"Average Profitability Score"</span>)
+                    plt.<span class="hljs-built_in">title</span>(<span class="hljs-string">"Movie Profitablity by Genre"</span>)
+                    plt.<span class="hljs-built_in">show</span>()
+                    </code></pre><h4 id="genre-and-budget">Genre and Budget</h4>
+                    <img src="content/movies-profit-genre-budget.png" class="shadow" alt="bar chart of average budget of different movie genres as described below" height="300px">
+                    <ul>
+                    <li>Animation and fantasy were the genres with the biggest budgets</li>
+                    <li>Drama had the lowest average budget, with comedy and romance not far behind</li>
+                    <li>Action had a middle-of-the-road average budget</li>
+                    </ul>
+                    <pre><code>genre_budget = df.groupby(<span class="hljs-string">"Genre"</span>)[<span class="hljs-string">"Budget"</span>].<span class="hljs-built_in">mean</span>()
+                    genres = [<span class="hljs-string">"Action"</span>, <span class="hljs-string">"Animation"</span>, <span class="hljs-string">"Comedy"</span>, <span class="hljs-string">"Drama"</span>, <span class="hljs-string">"Fantasy"</span>, <span class="hljs-string">"Romance"</span>]
+                    plt.clf()
+                    plt.bar(genres, genre_budget, <span class="hljs-built_in">color</span>=<span class="hljs-string">"red"</span>)
+                    plt.<span class="hljs-built_in">ylabel</span>(<span class="hljs-string">"Average Budget"</span>)
+                    plt.<span class="hljs-built_in">title</span>(<span class="hljs-string">"Movie Budget by Genre"</span>)
+                    plt.<span class="hljs-built_in">show</span>()
+                    </code></pre><h4 id="genre-and-rotten-tomatoes-scores">Genre and Rotten Tomatoes Scores</h4>
+                    <img src="content/movies-profit-genre-ratings.png" class="shadow" alt="overlapping histograms of audience and critics ratings for different movie genres as described below" height="300px">
+                    <ul>
+                    <li>Animation and fantasy both had good average ratings</li>
+                    <li>Action had the lowest ratings on average</li>
+                    <li>Comedy, romance, and drama scored well with the audience but not as well with critics</li>
+                    <li>Critics&#39; scores were generally lower than the audience&#39;s score</li>
+                    <li>Animation was the only genre where the Critics&#39; Score was higher than the Audience Score</li>
+                    <li>Action had the biggest gap between Critics&#39; Score and Audience Score</li>
+                    </ul>
+                    <pre><code>genre_crit = df.groupby(<span class="hljs-string">"Genre"</span>)[<span class="hljs-string">"Rotten Tomatoes %"</span>].<span class="hljs-built_in">mean</span>()
+                    genre_aud = df.groupby(<span class="hljs-string">"Genre"</span>)[<span class="hljs-string">"Audience  score %"</span>].<span class="hljs-built_in">mean</span>()
+                    genre1_x = [<span class="hljs-number">2</span>*element + <span class="hljs-number">0.8</span> <span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(len(genres))]
+                    genre2_x = [<span class="hljs-number">2</span>*element + <span class="hljs-number">1.6</span> <span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(len(genres))]
+
+                    plt.clf()
+                    plt.bar(genre1_x, genre_crit, <span class="hljs-built_in">color</span>=<span class="hljs-string">"green"</span>)
+                    plt.bar(genre2_x, genre_aud, <span class="hljs-built_in">color</span> = <span class="hljs-string">"blue"</span>)
+                    ax = plt.subplot()
+                    plt.axhline(mean_score, <span class="hljs-built_in">color</span>=<span class="hljs-string">"red"</span>)
+                    plt.<span class="hljs-built_in">legend</span>([<span class="hljs-string">"avg rating"</span>, <span class="hljs-string">"critics' score"</span>, <span class="hljs-string">"audience score"</span>])
+                    ax.set_xticks([<span class="hljs-number">2</span>*element + <span class="hljs-number">1.2</span> <span class="hljs-keyword">for</span> element <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(len(genres))])
+                    ax.set_xticklabels(genres)
+                    plt.<span class="hljs-built_in">ylabel</span>(<span class="hljs-string">"Average Score (%)"</span>)
+                    plt.<span class="hljs-built_in">title</span>(<span class="hljs-string">"Movie Rating by Genre"</span>)
+                    plt.<span class="hljs-built_in">show</span>()
+                    </code></pre><h3 id="lead-studio">Lead Studio</h3>
+                    <img src="content/movies-profit-studio-type.png" class="shadow" alt="pie chart of movies made by major versus independent studies as described below" height="300px">
+                    <ul>
+                    <li>Almost 75% of movies included were made by a major studio</li>
+                    <li>Just over 25% of movies included were made by an independent studio</li>
+                    </ul>
+                    <pre><code>independent = <span class="hljs-built_in">len</span>(df[df[<span class="hljs-string">"Lead Studio"</span>] == <span class="hljs-string">"Independent"</span>])
+                    major = <span class="hljs-built_in">len</span>(df) - independent
+                    plt.pie([major/<span class="hljs-built_in">len</span>(df), independent/<span class="hljs-built_in">len</span>(df)], autopct=<span class="hljs-string">"%1.01f%%"</span>)
+                    plt.legend([<span class="hljs-string">"Major Studio"</span>, <span class="hljs-string">"Independent"</span>])
+                    plt.title(<span class="hljs-string">"Major vs Independent Studio Movies"</span>)
+                    plt.show()
+                    </code></pre><h4 id="studio-type-and-profitability">Studio Type and Profitability</h4>
+                    <img src="content/movies-profit-studio-profit.png" class="shadow" alt="overlapping histograms of movie profits for major and independents studios as described below" height="300px">
+                    <ul>
+                    <li>The average profitability values for major studios versus independent studios were very close</li>
+                    <li>Major studios had movies with higher profitability values than independent studios</li>
+                    <li>Indpendent studios had more movies in the middle profitability range than major studios</li>
+                    </ul>
+                    <pre><code>mean<span class="hljs-emphasis">_major_</span>profit = df[<span class="hljs-string">df["Lead Studio"</span>] != "Independent"]["Profitability"].mean()
+                    mean<span class="hljs-emphasis">_ind_</span>profit = df[<span class="hljs-string">df["Lead Studio"</span>] == "Independent"]["Profitability"].mean()
+                    print(mean<span class="hljs-emphasis">_major_</span>profit)
+                    print(mean<span class="hljs-emphasis">_ind_</span>profit)
+                    plt.clf()
+                    plt.hist(df[<span class="hljs-string">df["Lead Studio"</span>] != "Independent"]["Profitability"], color = "blue", alpha = 0.4, density=True)
+                    plt.hist(df[<span class="hljs-string">df["Lead Studio"</span>] == "Independent"]["Profitability"], color = "yellow", alpha = 0.4, density=True)
+                    plt.axvline(mean<span class="hljs-emphasis">_major_</span>profit, color="orange")
+                    plt.axvline(mean<span class="hljs-emphasis">_ind_</span>profit, color="purple")
+                    plt.legend(["Major studio avg", "Independent studio avg", "Major studio", "Independent studio"])
+                    plt.title("Movie Profitability by Major vs Independent Studio")
+                    plt.xlabel("Profitability Score")
+                    plt.show()
+                    </code></pre><h4 id="studio-type-and-ratings">Studio Type and Ratings</h4>
+                    <img src="content/movies-profit-studio-ratings.png" class="shadow" alt="overlapping histograms of the averaged ratings of movies from major and independent studios as described below" height="300px">
+                    <ul>
+                    <li>Major studios had more movies at either extreme end of average Rotten Tomatoes Scores</li>
+                    <li>Major studios also had more movies in the middle range of scores</li>
+                    <li>Independent studios had more movies at the halfway points between the high end and the middle and between the lower end and the middle</li>
+                    </ul>
+                    <pre><code>plt.clf()
+                    plt.hist(df[<span class="hljs-string">df["Lead Studio"</span>] != "Independent"]["AvgRating"], color = "red", alpha = 0.4, density=True)
+                    plt.hist(df[<span class="hljs-string">df["Lead Studio"</span>] == "Independent"]["AvgRating"], color = "blue", alpha = 0.4, density=True)
+                    plt.legend(["Major studio", "Independent studio"])
+                    plt.title("Average Rating by Major vs Independent Studios")
+                    plt.xlabel("Average Rotten Tomatoes Score (%)")
+                    plt.show()
+                    </code></pre><h3 id="rotten-tomatoes-scores">Rotten Tomatoes Scores</h3>
+                    <h4 id="critical-rating">Critical Rating</h4>
+                    <img src="content/movies-profit-critics-profit.png" class="shadow" alt="scatter plot of the relationship between critics rating and profitability as described below" height="300px">
+                    <img src="content/movies-profit-critics-gross.png" class="shadow" alt="scatter plot of the relationship between critics rating and worldwide gross as described below" height="300px">
+                    <p>Critical rating does not appear to have a relationship with either profitability or the worldwide gross of a movie.</p>
+                    <pre><code><span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.clf</span>()
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.scatter</span>(df[<span class="hljs-string">"Rotten Tomatoes %"</span>], df[<span class="hljs-string">"Profitability"</span>])
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.xlabel</span>(<span class="hljs-string">"Critics Rating (%)"</span>)
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.ylabel</span>(<span class="hljs-string">"Profitability Score"</span>)
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.title</span>(<span class="hljs-string">"Critical Rating vs Profitability"</span>)
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.show</span>()
+
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.clf</span>()
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.scatter</span>(df[<span class="hljs-string">"Rotten Tomatoes %"</span>], df[<span class="hljs-string">"Worldwide Gross"</span>])
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.xlabel</span>(<span class="hljs-string">"Critics Rating (%)"</span>)
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.ylabel</span>(<span class="hljs-string">"Worldwide Gross (millions)"</span>)
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.title</span>(<span class="hljs-string">"Critical Rating vs Worldwide Gross"</span>)
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.show</span>()
+                    </code></pre><h4 id="audience-rating">Audience Rating</h4>
+                    <img src="content/movies-profit-audience-profit.png" class="shadow" alt="scatter plot of the relationship between audience rating and profitability as described below" height="300px">
+                    <img src="content/movies-profit-audience-gross.png" class="shadow" alt="scatter plot of the relationship between audience rating and worldwide gross as described below" height="300px">
+                    <p>Audience rating appears to have a weak, positive relationship with both profitability and worldwide gross.  A higher audience rating tends to correspond with a higher gross and higher profitability.</p>
+                    <pre><code><span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.clf</span>()
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.scatter</span>(df[<span class="hljs-string">"Audience  score %"</span>], df[<span class="hljs-string">"Profitability"</span>])
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.xlabel</span>(<span class="hljs-string">"Critics Rating (%)"</span>)
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.ylabel</span>(<span class="hljs-string">"Profitability Score"</span>)
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.title</span>(<span class="hljs-string">"Audience Rating vs Profitability"</span>)
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.show</span>()
+
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.clf</span>()
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.scatter</span>(df[<span class="hljs-string">"Audience  score %"</span>], df[<span class="hljs-string">"Worldwide Gross"</span>])
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.xlabel</span>(<span class="hljs-string">"Critics Rating (%)"</span>)
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.ylabel</span>(<span class="hljs-string">"Worldwide Gross (millions)"</span>)
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.title</span>(<span class="hljs-string">"Audience Rating vs Worldwide Gross"</span>)
+                    <span class="hljs-selector-tag">plt</span><span class="hljs-selector-class">.show</span>()
+                    </code></pre><h3 id="profitability">Profitability</h3>
+                    <img src="content/movies-profit-gross-profit.png" class="shadow" alt="scatter plot of relationship between worldwide gross and profitability as described below" height="300px">
+                    <img src="content/movies-profit-budget-profit.png" class="shadow" alt="scatter plot of relationship between budget and profitability as described below" height="300px">
+                    <p>There is a positive relationship between profitability and worldwide gross.  The relationship is stronger for lower values, while movies with either high profitability or high worldwide gross values tend to be less predictable.</p>
+                    <p>There is a slight negative relationship between profitability and budget, however this correlation is much weaker than the one between profitability and worldwide gross.</p>
+                    <pre><code><span class="hljs-meta"># gross vs profitability score</span>
+                    df = df.dropna()
+                    profit = df[<span class="hljs-string">"Profitability"</span>]
+                    gross = df[<span class="hljs-string">"Worldwide Gross"</span>]
+                    a, b = np.polyfit(profit, gross, <span class="hljs-number">1</span>)
+                    <span class="hljs-keyword">print</span>(<span class="hljs-string">"gross ~ "</span> + str(<span class="hljs-built_in">round</span>(a, <span class="hljs-number">3</span>)) + <span class="hljs-string">" * profitability + "</span> + str(<span class="hljs-built_in">round</span>(b, <span class="hljs-number">3</span>)))
+                    plt.clf()
+                    plt.scatter(df[<span class="hljs-string">"Profitability"</span>], df[<span class="hljs-string">"Worldwide Gross"</span>])
+                    plt.<span class="hljs-keyword">plot</span>(profit, (a * profit) + b, color=<span class="hljs-string">"orange"</span>)
+                    plt.<span class="hljs-built_in">xlabel</span>(<span class="hljs-string">"Profitability Score"</span>)
+                    plt.<span class="hljs-built_in">ylabel</span>(<span class="hljs-string">"Worldwide Gross (millions)"</span>)
+                    plt.<span class="hljs-built_in">title</span>(<span class="hljs-string">"Movies' Profitability vs Worldwide Gross"</span>)
+                    plt.<span class="hljs-keyword">show</span>()
+
+                    <span class="hljs-meta"># budget vs profitability score</span>
+                    df = df.dropna()
+                    profit = df[df[<span class="hljs-string">"Profitability"</span>] &lt; <span class="hljs-number">30</span>][<span class="hljs-string">"Profitability"</span>]
+                    budget = df[df[<span class="hljs-string">"Profitability"</span>] &lt; <span class="hljs-number">30</span>][<span class="hljs-string">"Budget"</span>]
+                    a, b = np.polyfit(profit, budget, <span class="hljs-number">1</span>)
+                    <span class="hljs-keyword">print</span>(<span class="hljs-string">"budget ~ "</span> + str(<span class="hljs-built_in">round</span>(a, <span class="hljs-number">3</span>)) + <span class="hljs-string">" * profitability + "</span> + str(<span class="hljs-built_in">round</span>(b, <span class="hljs-number">3</span>)))
+                    plt.clf()
+                    plt.scatter(df[<span class="hljs-string">"Profitability"</span>], df[<span class="hljs-string">"Budget"</span>])
+                    plt.<span class="hljs-keyword">plot</span>(profit, (a * profit) + b, color=<span class="hljs-string">"orange"</span>)
+                    plt.<span class="hljs-built_in">xlabel</span>(<span class="hljs-string">"Profitability Score"</span>)
+                    plt.<span class="hljs-built_in">ylabel</span>(<span class="hljs-string">"Budget (millions)"</span>)
+                    plt.<span class="hljs-built_in">title</span>(<span class="hljs-string">"Movies' Profitability vs Budget"</span>)
+                    plt.<span class="hljs-keyword">show</span>()
+                    </code></pre><h2 id="findings-and-insights">Findings and Insights</h2>
+                    <ul>
+                    <li>Genre seems to influence a movie&#39;s popularity more than other factors.</li>
+                    <li>Critical acclaim does not seem to impact a movie&#39;s popularity.</li>
+                    <li>Factors that seemed to affect profitability the most were worldwide gross and the audience score on Rotten Tomatoes.  In order to be profitable movies have to make a lot of money in the Box Office, and in order for a movie to have a large gross the movie must be popular with audiences.</li>
+                    <li>Factors that affected profitability the least were critics&#39; score on Rotten Tomatoes and major versus independent studio.  Critics&#39; scores and studio type typically do not align with audience score/popularity which is a bigger factor for profitability.</li>
+                    <li>Budget and genre had some impact on profitability, but to a lesser extent.  Lower budget movies do not need as large of a gross in order to still be profitable, and certain genres are more popular with audiences which is important for a large gross.</li>
+                    </ul>
+                    <h3 id="future-studies">Future Studies</h3>
+                    <p>This dataset only looked at Hollywood&#39;s most profitable movies.  A separate analysis based on a dataset of Hollywood&#39;s least profitable movies would give a more complete view on what factors do and do not impact profitability.</p>
+                    <p>A major flaw with this dataset was that two of the genres only had one observation.  Any insights based on genre, particularly the action and fantasy genres, are generalizations which may not be accurate.  Adding a few more movies from these genres would increase the accuracy of insights made about movie genres.</p>
+
+                </div>
+                </div>
+            </div>
+        </div>
+
     <div class="card projects-card excel-project">
         <img src="content/finance-tool-card.png" class="card-img-top" alt="An excel sheet with a table showing income, expenses, balance and running balance by month with corresponding charts to the right.">
         <div class="card-body">
