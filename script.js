@@ -29,7 +29,8 @@ $('.project-filter').click(function() {
         // remove class from filters
         id = $(this).attr('id');
         filter = id.slice(0, -6) + "project";
-        selected.pop(filter);
+        index = selected.indexOf(filter);
+        selected.splice(index, 1);
 
         // hide horizontal divider if applicable
         if (selected.length == 0){

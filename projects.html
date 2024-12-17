@@ -52,7 +52,489 @@
             <button type="button" class="btn btn-secondary project-filter" id="pandas-filter">Pandas</button>
         </div>
     </div>
-    <div class="col-md-9 column" id="projects">
+    <div class="col-md-9 column" id="projects">   
+    <div class="card projects-card sql-project powerbi-project">
+        <img src="" class="card-img-top" alt="">
+        <div class="card-body">
+                <div class="d-flex justify-content-between"><h3 class="card-title">Telecom Customer Churn</h3><h4>SQL, PowerBI, Figma</h4></div>
+                <p class="card-text">Churn analysis for a fictional California telecom company to determine how many customers are leaving the company, what kind of customers are leaving, and why</p>
+                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#telecom-churn-modal">
+                    Read more
+                </button>
+            </div>
+        </div>
+    
+        <div class="modal fade modal-xl" id="telecom-churn-modal" tabindex="-1" aria-labelledby=" Project Writeup" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Telecom Customer Churn</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Tools: PostgreSQL, Power BI, Figma</strong></p>
+                    <p><strong>Datasets:</strong> </p>
+                    <ul>
+                    <li>telecom_customer_churn.csv (38 fields, 7043 observations)</li>
+                    <li>telecom_zipcode_population.csv (2 fields, 1671 observations)</li>
+                    </ul>
+                    <p><em>Datasets sourced from Maven Analytics</em></p>
+                    <h2 id="telecom-customer-churn-variables-">Telecom Customer Churn Variables:</h2>
+                    <ul>
+                    <li>CustomerID</li>
+                    <li>Gender</li>
+                    <li>Age</li>
+                    <li>Married</li>
+                    <li>Number of dependents</li>
+                    <li>City</li>
+                    <li>Zipcode</li>
+                    <li>Latitude</li>
+                    <li>Longitude</li>
+                    <li>Number of referrals</li>
+                    <li>Tenure in months</li>
+                    <li>Offer (A, B, C, D, E, None)</li>
+                    <li>Phone service</li>
+                    <li>Avg monthly long distance charges</li>
+                    <li>Multiple lines</li>
+                    <li>Internet service</li>
+                    <li>Internet type (DSL,Fiber Optic, Cable)</li>
+                    <li>Avg monthly GB download</li>
+                    <li>Online security</li>
+                    <li>Online backup</li>
+                    <li>Device protection plan</li>
+                    <li>Premium tech support</li>
+                    <li>Streaming TV</li>
+                    <li>Streaming movies</li>
+                    <li>Streaming music</li>
+                    <li>Unlimited data</li>
+                    <li>Contract (Month-to-Month, One Year, Two Years)</li>
+                    <li>Paperless billing</li>
+                    <li>Payment method (Bank Withdrawal, Credit Card, Mailed Check)</li>
+                    <li>Monthly charge</li>
+                    <li>Total charges</li>
+                    <li>Total refunds</li>
+                    <li>Total extra data charges</li>
+                    <li>Total long distance charges</li>
+                    <li>Total revenue</li>
+                    <li>Customer status (Churned, Stayed, Joined)</li>
+                    <li>Churn category (Attitude, Competitor, Dissatisfaction, Other, Price)</li>
+                    <li>Churn reason (directly related to churn category)</li>
+                    </ul>
+                    <h2 id="zipcode-population-variables">Zipcode Population Variables</h2>
+                    <ul>
+                    <li>Zipcode</li>
+                    <li>Population</li>
+                    </ul>
+                    <h2 id="data-preparation">Data Preparation</h2>
+                    <h3 id="table-creation">Table Creation</h3>
+                    <pre><code><span class="hljs-comment">-- create zipcode population table --</span>
+                    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> zipcodes (
+                        zipcode <span class="hljs-built_in">INT</span>, 
+                        population <span class="hljs-built_in">INT</span>
+                    );
+                    \copy zipcodes FROM 'filepath/telecom_zipcode_population.csv' DELIMITER ',' CSV HEADER
+                    
+                    <span class="hljs-comment">-- create types for customer variables --</span>
+                    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TYPE</span> genders <span class="hljs-keyword">as</span> ENUM(<span class="hljs-string">'Male'</span>, <span class="hljs-string">'Female'</span>);
+                    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TYPE</span> yes_no <span class="hljs-keyword">AS</span> ENUM(<span class="hljs-string">'Yes'</span>, <span class="hljs-string">'No'</span>);
+                    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TYPE</span> offers <span class="hljs-keyword">AS</span> ENUM(<span class="hljs-string">'None'</span>, <span class="hljs-string">'Offer A'</span>, <span class="hljs-string">'Offer B'</span>, <span class="hljs-string">'Offer C'</span>, <span class="hljs-string">'Offer D'</span>, <span class="hljs-string">'Offer E'</span>);
+                    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TYPE</span> internet_types <span class="hljs-keyword">AS</span> ENUM(<span class="hljs-string">'DSL'</span>, <span class="hljs-string">'Fiber Optic'</span>, <span class="hljs-string">'Cable'</span>);
+                    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TYPE</span> contracts <span class="hljs-keyword">AS</span> ENUM(<span class="hljs-string">'Month-to-Month'</span>, <span class="hljs-string">'One Year'</span>, <span class="hljs-string">'Two Year'</span>);
+                    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TYPE</span> payments <span class="hljs-keyword">AS</span> ENUM(<span class="hljs-string">'Bank Withdrawal'</span>, <span class="hljs-string">'Credit Card'</span>, <span class="hljs-string">'Mailed Check'</span>);
+                    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TYPE</span> customer_statuses <span class="hljs-keyword">AS</span> ENUM(<span class="hljs-string">'Churned'</span>, <span class="hljs-string">'Stayed'</span>, <span class="hljs-string">'Joined'</span>);
+                    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TYPE</span> churn_categories <span class="hljs-keyword">AS</span> ENUM(<span class="hljs-string">'Attitude'</span>, <span class="hljs-string">'Competitor'</span>, <span class="hljs-string">'Dissatisfaction'</span>, <span class="hljs-string">'Other'</span>, <span class="hljs-string">'Price'</span>);
+                    
+                    <span class="hljs-comment">-- create customer churn table --</span>
+                    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> customers (
+                        customer_id <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">15</span>) <span class="hljs-keyword">UNIQUE</span>,
+                        gender genders,
+                        age <span class="hljs-built_in">SMALLINT</span>,
+                        married yes_no,
+                        number_of_dependents <span class="hljs-built_in">SMALLINT</span>,
+                        city <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">75</span>),
+                        zipcode <span class="hljs-built_in">INT</span>,
+                        latitude <span class="hljs-keyword">DOUBLE</span> <span class="hljs-keyword">PRECISION</span>,
+                        longitude <span class="hljs-keyword">DOUBLE</span> <span class="hljs-keyword">PRECISION</span>,
+                        number_of_referrals <span class="hljs-built_in">SMALLINT</span>,
+                        tenure_in_months <span class="hljs-built_in">SMALLINT</span>,
+                        offer offers,
+                        phone_service yes_no,
+                        avg_monthly_long_distance_charges <span class="hljs-built_in">FLOAT</span>,
+                        multiple_lines yes_no,
+                        internet_service yes_no,
+                        internet_type internet_types,
+                        avg_monthly_gb_download <span class="hljs-built_in">SMALLINT</span>,
+                        online_security yes_no,
+                        online_backup yes_no,
+                        device_protection_plan yes_no,
+                        premium_tech_support yes_no,
+                        streaming_tv yes_no,
+                        streaming_movies yes_no,
+                        streaming_music yes_no,
+                        unlimited_data yes_no,
+                        contract contracts,
+                        paperless_billing yes_no,
+                        payment_method payments,
+                        monthly_charge <span class="hljs-built_in">FLOAT</span>,
+                        total_charges <span class="hljs-built_in">FLOAT</span>,
+                        total_refunds <span class="hljs-built_in">FLOAT</span>,
+                        total_extra_data_charges <span class="hljs-built_in">SMALLINT</span>,
+                        total_long_distance_charges <span class="hljs-built_in">FLOAT</span>,
+                        total_revenue <span class="hljs-built_in">FLOAT</span>,
+                        customer_status customer_statuses,
+                        churn_category churn_categories,
+                        churn_reason <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">250</span>)
+                    );
+                    \copy customers (customer_id, gender, age, married, number_of_dependents, city, zipcode, latitude, longitude, number_of_referrals, tenure_in_months, offer, phone_service, avg_monthly_long_distance_charges, multiple_lines, internet_service, internet_type, avg_monthly_gb_download, online_security, online_backup, device_protection_plan, premium_tech_support, streaming_tv, streaming_movies, streaming_music, unlimited_data, contract, paperless_billing, payment_method, monthly_charge, total_charges, total_refunds, total_extra_data_charges, total_long_distance_charges, total_revenue, customer_status, churn_category, churn_reason) FROM 'filepath/telecom_customer_churn.csv' DELIMITER ',' CSV HEADER
+                    </code></pre><h3 id="data-cleaning">Data Cleaning</h3>
+                    <p>The main concern for data cleaning for this churn analysis are duplicate customer IDs and missing zipcodes in the customer tables that would interfere with joins.</p>
+                    <pre><code><span class="hljs-keyword">SELECT</span> customer_id
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> customer_id
+                    <span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(customer_id) &gt; <span class="hljs-number">1</span>;
+                    
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> customer_id) <span class="hljs-keyword">AS</span> total_customers
+                    <span class="hljs-keyword">FROM</span> customers;
+                    </code></pre><p>There are 0 customer ID duplicates in the customers table and 7043 unique customer IDs.</p>
+                    <pre><code><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">COUNT</span>(<span class="hljs-keyword">DISTINCT</span> customer_id) <span class="hljs-keyword">AS</span> null_zip_count
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> zipcode <span class="hljs-keyword">IS</span> <span class="hljs-literal">NULL</span>;
+                    </code></pre><p>There are zero null values for zipcode in the customers table, which is ideal for joining with the population table.</p>
+                    <p><strong>There are no significant issues with the data that was given.</strong></p>
+                    <h2 id="exploratory-data-analysis">Exploratory Data Analysis</h2>
+                    <h3 id="populations-by-zip-code">Populations by Zip Code</h3>
+                    <pre><code><span class="hljs-comment">-- population summary statistics --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-keyword">AVG</span>(population), <span class="hljs-number">1</span>) <span class="hljs-keyword">AS</span> avg_pop, 
+                        <span class="hljs-keyword">MIN</span>(population) <span class="hljs-keyword">AS</span> min_pop,
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.25</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> population) <span class="hljs-keyword">AS</span> pop_q1,
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.50</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> population) <span class="hljs-keyword">AS</span> pop_q2,
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.75</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> population) <span class="hljs-keyword">AS</span> pop_q3,
+                        <span class="hljs-keyword">MAX</span>(population) <span class="hljs-keyword">AS</span> max_pop
+                    <span class="hljs-keyword">FROM</span> zipcodes;
+                    </code></pre><p>California has an average population of 20276.4 people, by zip code.  The median population is 14239, and the first and third quartiles are 1789 and 32942.5 respectively.  The smallest population by zip code is 11 people and the largest is 105285 people.</p>
+                    <h3 id="customer-demographics">Customer Demographics</h3>
+                    <pre><code><span class="hljs-comment">-- age summary stats --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-keyword">AVG</span>(age), <span class="hljs-number">1</span>) <span class="hljs-keyword">AS</span> avg_age, <span class="hljs-keyword">MIN</span>(age) <span class="hljs-keyword">AS</span> min_age, <span class="hljs-keyword">MAX</span>(age) <span class="hljs-keyword">AS</span> max_age
+                    <span class="hljs-keyword">FROM</span> customers;
+                    
+                    <span class="hljs-comment">-- gender --</span>
+                    <span class="hljs-keyword">SELECT</span> gender, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customers_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">7034</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> gender;
+                    
+                    <span class="hljs-comment">-- married or unmarried --</span>
+                    <span class="hljs-keyword">SELECT</span> married, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customers_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">7034</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> married;
+                    
+                    <span class="hljs-comment">-- number of dependents --</span>
+                    <span class="hljs-keyword">SELECT</span> number_of_dependents, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customers_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">7034</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>;
+                    </code></pre><p>The average age of customers is 46.5 with a range of 19 to 80.  The ratio of men to women is roughly 1:1.  48% of customers are married.  76% percent of customers have no dependents. 7% of customers have one dependent, 7% have two, and 7% have three.  There are a handful of customers for each number of dependents up to nine dependents.</p>
+                    <h3 id="services-and-contracts">Services and Contracts</h3>
+                    <pre><code><span class="hljs-comment">-- contract types --</span>
+                    <span class="hljs-keyword">SELECT</span> contract, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">7043</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> contract
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">2</span> <span class="hljs-keyword">DESC</span>;
+                    
+                    <span class="hljs-comment">-- offers --</span>
+                    <span class="hljs-keyword">SELECT</span> offer,
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count,
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">7043</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> offer
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">2</span> <span class="hljs-keyword">DESC</span>;
+                    </code></pre><p>Half of customers are contracted on a month-to-month basis.  26% have a two year contract and 22% have a one year contract (the rest of the customers were missing a value for the contract variable).</p>
+                    <p>55% of customers have no offer.  The most common offers are offer B and offer E, with 11% of customers for each.  Offer D has 8%, offer A has 7%, and Offer C is the least common with only 5%.</p>
+                    <pre><code><span class="hljs-comment">-- phone --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">7034</span>) <span class="hljs-keyword">AS</span> phone_service_percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> phone_service = <span class="hljs-string">'Yes'</span>;
+                    
+                    <span class="hljs-comment">-- internet --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">7034</span>) <span class="hljs-keyword">AS</span> internet_service_percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> internet_service = <span class="hljs-string">'Yes'</span>;
+                    
+                    <span class="hljs-comment">-- premium tech support --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">7034</span>) <span class="hljs-keyword">AS</span> tech_support_percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> premium_tech_support = <span class="hljs-string">'Yes'</span>;
+                    
+                    <span class="hljs-comment">-- online security --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">7034</span>) <span class="hljs-keyword">AS</span> online_security_percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> online_security = <span class="hljs-string">'Yes'</span>;
+                    
+                    <span class="hljs-comment">-- online backup --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">7034</span>) <span class="hljs-keyword">AS</span> online_backup_percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> online_backup = <span class="hljs-string">'Yes'</span>;
+                    
+                    <span class="hljs-comment">-- streaming --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-number">100</span> - <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">7034</span>) <span class="hljs-keyword">AS</span> streaming_percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> streaming_tv = <span class="hljs-string">'No'</span> 
+                        <span class="hljs-keyword">AND</span> streaming_movies = <span class="hljs-string">'No'</span> 
+                        <span class="hljs-keyword">AND</span> streaming_music = <span class="hljs-string">'No'</span>;
+                    </code></pre><p>The most common service is phone service, with 90% of all customers subscribed.  The next most popular services are internet and some form of streaming with 78% and 73% respectively.  Online security, online backup, and tech support were much less popular, ranging from 28% to 34% of customers.</p>
+                    <h3 id="churn-rate-and-lost-revenue">Churn Rate and Lost Revenue</h3>
+                    <h4 id="customer-status-and-total-revenue">Customer Status and Total Revenue</h4>
+                    <pre><code><span class="hljs-comment">-- customer status --</span>
+                    <span class="hljs-keyword">SELECT</span> customer_status, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customers_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">7043</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> customer_status;
+                    
+                    <span class="hljs-comment">-- total revenue --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-keyword">SUM</span>(total_revenue)) <span class="hljs-keyword">AS</span> total_revenue
+                    <span class="hljs-keyword">FROM</span> customers;
+                    
+                    <span class="hljs-comment">-- total revenue by customer status --</span>
+                    <span class="hljs-keyword">SELECT</span> customer_status, 
+                        <span class="hljs-keyword">SUM</span>(total_revenue) <span class="hljs-keyword">AS</span> revenue, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>* <span class="hljs-keyword">SUM</span>(total_revenue)/<span class="hljs-number">21371132</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> customer_status;
+                    </code></pre><p>1869 total customers were churned, accounting for 26% of customers.  67% of customers stayed, and 6% were new customers.</p>
+                    <p>Out of the $21,371,132 in total revenue, $3,684,459.82 (17%) of revenue was from churned customers.  83% of the revenue was from customers that stayed.  Customers that just joined unsurprisingly did not contribute much to the total revenue, only $54,279.75.</p>
+                    <h4 id="churn-categories-and-reasons">Churn Categories and Reasons</h4>
+                    <pre><code><span class="hljs-comment">-- churn category --</span>
+                    <span class="hljs-keyword">SELECT</span> churn_category, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">2</span> <span class="hljs-keyword">DESC</span>;
+                    
+                    <span class="hljs-comment">-- most common churn reasons --</span>
+                    <span class="hljs-keyword">SELECT</span> churn_category, churn_reason, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span> <span class="hljs-keyword">AND</span> churn_reason <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>, <span class="hljs-number">2</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> customer_count <span class="hljs-keyword">DESC</span>
+                    <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">5</span>;
+                    </code></pre><p>44% of customers were churned because of a competitor, the most common category.  Another 17% were lost because of dissatisfaction, 16% because of attitude, 11% because of price, and 9% because of a different reason.</p>
+                    <p>The five most common specific reasons for leaving were:</p>
+                    <ol>
+                    <li>The competitor had a better devices</li>
+                    <li>The competitor had a better offer</li>
+                    <li>The attitude of a support person</li>
+                    <li>Other/don&#39;t know</li>
+                    <li>Competitor offered more data </li>
+                    </ol>
+                    <h4 id="how-many-of-the-churned-customers-were-high-value-customers-">How many of the churned customers were high-value customers?</h4>
+                    <pre><code><span class="hljs-comment">-- calculate revenue quartiles --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.25</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> total_revenue) <span class="hljs-keyword">AS</span> rev_q1, 
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.50</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> total_revenue) <span class="hljs-keyword">AS</span> rev_q2,
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.75</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> total_revenue) <span class="hljs-keyword">AS</span> rev_q3
+                    <span class="hljs-keyword">FROM</span> customers;
+                    
+                    <span class="hljs-comment">-- group churned customers by revenue quartile --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CASE</span>
+                        <span class="hljs-keyword">WHEN</span> total_revenue &lt; <span class="hljs-number">605.61</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'q1'</span>
+                        <span class="hljs-keyword">WHEN</span> total_revenue &lt; <span class="hljs-number">2108.64</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'q2'</span>
+                        <span class="hljs-keyword">WHEN</span> total_revenue &lt; <span class="hljs-number">4801.145</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'q3'</span>
+                    <span class="hljs-keyword">ELSE</span> <span class="hljs-string">'q4'</span>
+                    <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> rev_quartile,
+                    <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count,
+                    <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>;
+                    </code></pre><p>Over a third of churned customers were in the lowest total revenue quartile and a fourth were in the second lowest quartile.  This may mean that churned customers were not very profitable customers, or the lower total revenue could be due to a difference in typical tenure for churned and non-churned customers.</p>
+                    <pre><code><span class="hljs-comment">-- tenure summary stats for churned customers --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-keyword">AVG</span>(tenure_in_months)) <span class="hljs-keyword">AS</span> avg_tenure, 
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.25</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> tenure_in_months) <span class="hljs-keyword">AS</span> q1,
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.5</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> tenure_in_months) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">median</span>, 
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.75</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> tenure_in_months) <span class="hljs-keyword">AS</span> q3
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>;
+                    
+                    <span class="hljs-comment">-- tenure summary stats for non-churned customers --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ROUND</span>(<span class="hljs-keyword">AVG</span>(tenure_in_months)) <span class="hljs-keyword">AS</span> avg_tenure, 
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.25</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> tenure_in_months) <span class="hljs-keyword">AS</span> q1,
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.5</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> tenure_in_months) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">median</span>, 
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.75</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> tenure_in_months) <span class="hljs-keyword">AS</span> q3
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Stayed'</span>;
+                    </code></pre><p>Churned customers have an average tenure of 18 months and a median of 10 months, compared to the 38 month average and median of remaining customers.  The middle 50% of churned customers had a tenure between 2 and 29 months, while the middle 50% of remaining customers have a tenure between 15 and 61 months.  Churned customers generally have much shorter tenures, which could be a factor in the lower total revenues.  </p>
+                    <p>High and low-value customers should be determined by monthly charges instead so the difference in tenure between groups will not skew the results.</p>
+                    <pre><code><span class="hljs-comment">-- calculate monthly charges quartiles --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.25</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> monthly_charge) <span class="hljs-keyword">AS</span> chrg_q1, 
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.50</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> monthly_charge) <span class="hljs-keyword">AS</span> chrg_q2, 
+                        <span class="hljs-keyword">PERCENTILE_CONT</span>(<span class="hljs-number">0.75</span>) <span class="hljs-keyword">WITHIN</span> <span class="hljs-keyword">GROUP</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> monthly_charge) <span class="hljs-keyword">AS</span> chrg_q3
+                    <span class="hljs-keyword">FROM</span> customers;
+                    
+                    <span class="hljs-comment">-- group churned customers by monthly charges quartile --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CASE</span>
+                        <span class="hljs-keyword">WHEN</span> monthly_charge &lt; <span class="hljs-number">30.4</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'q1'</span>
+                        <span class="hljs-keyword">WHEN</span> monthly_charge &lt; <span class="hljs-number">70.05</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'q2'</span>
+                        <span class="hljs-keyword">WHEN</span> monthly_charge &lt; <span class="hljs-number">89.75</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'q3'</span>
+                    <span class="hljs-keyword">ELSE</span> <span class="hljs-string">'q4'</span>
+                    <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> chrg_quartile,
+                    <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count,
+                    <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>;
+                    </code></pre><p>66% of churned customers were in the top half of monthly charges, and only 10% were in the bottom quartile.  Churned customers appear to generally be high-value customers based on monthly earnings, meaning that the company is losing out on a lot of future earnings by not retaining these customers.</p>
+                    <h2 id="ideal-churn-profile">Ideal Churn Profile</h2>
+                    <h3 id="churned-customer-demographics">Churned Customer Demographics</h3>
+                    <pre><code><span class="hljs-comment">-- cities with the most churned customers --</span>
+                    <span class="hljs-keyword">SELECT</span> city, <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">2</span> <span class="hljs-keyword">DESC</span>
+                    <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">5</span>;
+                    
+                    <span class="hljs-comment">-- number of churned customers in cities grouped by population quartile --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CASE</span>
+                        <span class="hljs-keyword">WHEN</span> population &lt; <span class="hljs-number">1789</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'q1'</span>
+                        <span class="hljs-keyword">WHEN</span> population &lt; <span class="hljs-number">14239</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'q2'</span>
+                        <span class="hljs-keyword">WHEN</span> population &lt; <span class="hljs-number">32942.5</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'q3'</span>
+                    <span class="hljs-keyword">ELSE</span> <span class="hljs-string">'q4'</span>
+                    <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> pop_quartile,
+                    <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count
+                    <span class="hljs-keyword">FROM</span> customers <span class="hljs-keyword">AS</span> c
+                    <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> zipcodes <span class="hljs-keyword">AS</span> z
+                    <span class="hljs-keyword">ON</span> c.zipcode = z.zipcode
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>;
+                    </code></pre><p>The five cities with the most churned customers were:</p>
+                    <ol>
+                    <li>San Diego - 185 customers</li>
+                    <li>Los Angeles - 78 customers</li>
+                    <li>San Francisco - 31 customers</li>
+                    <li>San Jose - 29 customers</li>
+                    <li>Sacramento - 26 customers</li>
+                    </ol>
+                    <p>These are all more populous cities in California.  Using the population quartiles calculated in the exploratory data analysis step, it is clear that bigger cities unsurprisingly have more churned customers.  The lowest quartile had 380 churned customer, the second lowest had 406, the second highest had 459, and the highest had 624.  Given this relationship between city size and churn, it is not clear if city has an unusual impact on customer churn rate.</p>
+                    <pre><code><span class="hljs-comment">-- age group --</span>
+                    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">CASE</span>
+                        <span class="hljs-keyword">WHEN</span> age &lt; <span class="hljs-number">20</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'19 and under'</span>
+                        <span class="hljs-keyword">WHEN</span> age &lt; <span class="hljs-number">30</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'20s'</span>
+                        <span class="hljs-keyword">WHEN</span> age &lt; <span class="hljs-number">40</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'30s'</span>
+                        <span class="hljs-keyword">WHEN</span> age &lt; <span class="hljs-number">50</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'40s'</span>
+                        <span class="hljs-keyword">WHEN</span> age &lt; <span class="hljs-number">60</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'50s'</span>
+                        <span class="hljs-keyword">WHEN</span> age &lt; <span class="hljs-number">70</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'60s'</span>
+                        <span class="hljs-keyword">WHEN</span> age &lt; <span class="hljs-number">80</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'70s'</span>
+                    <span class="hljs-keyword">ELSE</span> <span class="hljs-string">'80 and up'</span>
+                    <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> age_group,
+                    <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count, 
+                    <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>;
+                    
+                    <span class="hljs-comment">-- gender --</span>
+                    <span class="hljs-keyword">SELECT</span> gender, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>;
+                    
+                    <span class="hljs-comment">-- married or unmarried --</span>
+                    <span class="hljs-keyword">SELECT</span> married, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>;
+                    
+                    <span class="hljs-comment">-- number of dependents --</span>
+                    <span class="hljs-keyword">SELECT</span> number_of_dependents, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>;]
+                    </code></pre><p>For the age ranges, there are very few churned customers under 20 years old or above 80 years old.  The other decades are fairly consistent (around 16%) with a slight peak for the 40s with 17%.</p>
+                    <p>Gender does not seem to be much of a factor for churn rate.  939 churned customers were women and 930 were men.</p>
+                    <p>Marriage status and number of dependents are where the churned customers start to stand out from the demographics of customers as a whole.  35% of churned customers were married compared to 48% of all customers.  94% of churned customers had no dependents, 1% had one dependent, 1% had two, and 1% had three compared to 76%, 7%, 7%, and 7% for customers in general.</p>
+                    <h3 id="churned-customer-services-and-contracts">Churned Customer Services and Contracts</h3>
+                    <pre><code><span class="hljs-comment">-- contract type --</span>
+                    <span class="hljs-keyword">SELECT</span> contract, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">2</span> <span class="hljs-keyword">DESC</span>;
+                    
+                    <span class="hljs-comment">-- offer --</span>
+                    <span class="hljs-keyword">SELECT</span> offer, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">2</span> <span class="hljs-keyword">DESC</span>;
+                    </code></pre><p>Churned customers generally had shorter contracts than other customers.  The majority of churn customers had a month-to month contract (88%).  8% had a one year contract and only 2% had a two year contract.</p>
+                    <p>56% percent of churned customers had no offers, which is close to the percent of all customers that do not have an offer.  Offer E was twice as common for churned customers than all customers, with 22% of churned customers having that offer.   Offer B was only half as common with only 5%.  8% of churned customers had offer D, 5% had offer C, and only 1% had offer A.</p>
+                    <pre><code><span class="hljs-comment">-- internet service --</span>
+                    <span class="hljs-keyword">SELECT</span> internet_service, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">2</span> <span class="hljs-keyword">DESC</span>;
+                    
+                    <span class="hljs-comment">-- tech support --</span>
+                    <span class="hljs-keyword">SELECT</span> premium_tech_support, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>;
+                    
+                    <span class="hljs-comment">-- online security --</span>
+                    <span class="hljs-keyword">SELECT</span> online_security, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>;
+                    
+                    <span class="hljs-comment">-- online backup --</span>
+                    <span class="hljs-keyword">SELECT</span> online_backup, 
+                        <span class="hljs-keyword">COUNT</span>(customer_id) <span class="hljs-keyword">AS</span> customer_count, 
+                        <span class="hljs-keyword">ROUND</span>(<span class="hljs-number">100</span>*<span class="hljs-keyword">COUNT</span>(customer_id)/<span class="hljs-number">1869</span>) <span class="hljs-keyword">AS</span> percentage
+                    <span class="hljs-keyword">FROM</span> customers
+                    <span class="hljs-keyword">WHERE</span> customer_status = <span class="hljs-string">'Churned'</span>
+                    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>
+                    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">1</span>;
+                    </code></pre><p>Churned customers are more likely to have internet service than customers in general, with 93% subscribed compared to only 78%.  However, churned customers were only half as likely to pay for either premium tech support or online security.</p>
+                    <h3 id="jean-smith-the-ideal-churn-profile">Jean Smith - The Ideal Churn Profile</h3>
+                    <img src="content/telecom-churn-profile.png" alt="Profile photo of a middle-aged woman next to the name Jean Smith with a lists of demographic and telecom service information below" height="350px">
+                </div>
+                </div>
+            </div>
+        </div>
     <div class="card projects-card excel-project">
         <img src="content/finance-tool-card.png" class="card-img-top" alt="An excel sheet with a table showing income, expenses, balance and running balance by month with corresponding charts to the right.">
         <div class="card-body">
