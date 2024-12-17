@@ -1,6 +1,40 @@
+/**
+pink: #A50062
+orange: #EF7627
+black: #14110F
+gray: #CDCDCD
+white: #F2F5EA
+**/
+
+body {
+    background-color: #14110F;
+    color: #F2F5EA;
+}
+
+h1 {margin: 75px 0px 25px 0px;}
+
 .container {
     width: 80%;
     margin: 10px auto;
+}
+
+.navbar {
+    background-color: #A50062;
+}
+
+.projects-card {
+    background-color: #CDCDCD;
+    color: #14110F;
+    margin: 20px 0px;
+}
+
+.modal-content {
+    color: #14110F;
+}
+
+#projects {
+    height: calc(100vh - 160px);
+    overflow: scroll;
 }
 
 .project-filter {
@@ -9,4 +43,23 @@
     border-radius: 16px;
 }
 
-h1 {margin-top: 75px;}
+.btn {color: #14110F;}
+
+.btn-primary {
+    background-color: #EF7627;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #CDCDCD;
+}
+
+.btn-primary:hover {
+    background-color: #bc4f06;
+    color: #F2F5EA;
+}
+
+.btn-secondary:hover {
+    background-color: #5C636A;
+    color: #F2F5EA;
+}
