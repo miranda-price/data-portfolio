@@ -63,6 +63,135 @@
                 </button>
             </div>
         </div>
+    <div class="card projects-card powerbi-project">
+        <img src="content/superstore-segment-card.png" class="card-img-top" alt="business intelligence dashboard showing the recency, frequency, and monetary distributions of sales as well as the amount of each level of customer and the sales and profit of those segments">
+        <div class="card-body">
+                <div class="d-flex justify-content-between"><h3 class="card-title">Superstore Customer Segmentation</h3><h4>Power BI</h4></div>
+                <p class="card-text">Customer segmentation for a superstore's 2017 sales using the Recency, Frequency, and Monetary (RFM) model</p>
+                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#superstore-segment-modal">
+                    Read more
+                </button>
+            </div>
+        </div>
+    
+        <div class="modal fade modal-xl" id="superstore-segment-modal" tabindex="-1" aria-labelledby="Superstore Customer Segmentation Project Writeup" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Superstore Customer Segmentation</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="content/superstore-segment-dashboard.png" class="shadow" alt="business intelligence dashboard showing the recency, frequency, and monetary distributions of sales as well as the amount of each level of customer and the sales and profit of those segments" height="400px">
+                    <p><strong>Tools: Power BI</strong></p>
+                    <p><strong>Dataset:</strong> Sample - Superstore.csv<br>21 fields, 9994 observations</p>
+                    <p><em>Note: The data was filtered to only include orders from 2017, resulting in 3312 total observations.</em></p>
+                    <h2 id="superstore-variables-">Superstore Variables:</h2>
+                    <ul>
+                    <li>Row ID (primary key)</li>
+                    <li>Order ID (2 letters-year-6 numbers)</li>
+                    <li>Order Date</li>
+                    <li>Ship Date</li>
+                    <li>Ship Mode</li>
+                    <li>Customer ID (2 letters-5 numbers)</li>
+                    <li>Customer Name</li>
+                    <li>Segment (&#39;Corporate&#39;, &#39;Consumer&#39;, &#39;Home Office&#39;)</li>
+                    <li>Country</li>
+                    <li>City</li>
+                    <li>State</li>
+                    <li>Postal Code</li>
+                    <li>Region (&#39;Central&#39;, &#39;East&#39;, &#39;South&#39;, &#39;West&#39;)</li>
+                    <li>Product ID (category code-subcategory code-8 numbers)</li>
+                    <li>Category</li>
+                    <li>Sub-Category</li>
+                    <li>Product Name</li>
+                    <li>Sales</li>
+                    <li>Quantity</li>
+                    <li>Discount</li>
+                    <li>Profit</li>
+                    </ul>
+                    <h2 id="calculating-rmf-scores">Calculating RMF Scores</h2>
+                    <p>Created new measures in Power BI for the last transaction date, recency (using last transaction date and 1/1/18 as the reference point), frequency, and monetary.</p>
+                    <pre><code>LastTransactionDate = MAXX(<span class="hljs-name">FILTER</span>('Superstore', 'Superstore'[Customer ID] = ('Superstore'[Customer ID])), 'Superstore'[Order Date])
+                    R value = DATEDIFF('Superstore'[LastTransactionDate], DATE(<span class="hljs-number">2018</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>), DAY)
+                    F value = CALCULATE(<span class="hljs-name">DISTINCTCOUNT</span>('Superstore'[Order ID]), ALLEXCEPT('Superstore', 'Superstore'[Customer ID]))
+                    M value = SUM('Superstore'[Sales])
+                    </code></pre><p>These measures were used to create a RFM table, which was linked to the superstore table on the Customer ID variable.</p>
+                    <pre><code><span class="hljs-symbol">RFMTable</span> = 
+                    <span class="hljs-symbol">SUMMARIZE</span>(
+                        <span class="hljs-string">'Superstore'</span>,
+                        <span class="hljs-string">'Superstore'</span>[<span class="hljs-symbol">Customer</span> <span class="hljs-symbol">ID</span>],
+                        <span class="hljs-string">'Superstore'</span>[<span class="hljs-symbol">Customer</span> <span class="hljs-symbol">Name</span>],
+                        <span class="hljs-string">"Recency"</span>, [<span class="hljs-symbol">R</span> value],
+                        <span class="hljs-string">"Frequency"</span>, [<span class="hljs-symbol">F</span> value],
+                        <span class="hljs-string">"Monetary"</span>, [<span class="hljs-symbol">M</span> value]
+                    )
+                    </code></pre><p>New columns for R score, F score, and M score were created by sorting each customer into 5 quantiles and assigning a corresponding score between one and five.  These three scores were combined to form a RFM score column, and then that RFM score was matched with a segment from the Segments table to categorize each customer.</p>
+                    <pre><code><span class="hljs-symbol">R</span> <span class="hljs-symbol">Score</span> = <span class="hljs-symbol">SWITCH</span> (
+                    <span class="hljs-symbol">TRUE</span> (),
+                    [<span class="hljs-symbol">Recency</span>] &lt;= <span class="hljs-symbol">PERCENTILE</span>.<span class="hljs-symbol">INC</span> ( <span class="hljs-string">'RFMtable'</span>[<span class="hljs-symbol">Recency</span>], <span class="hljs-number">0.20</span> ), <span class="hljs-string">"5"</span>,    
+                    [<span class="hljs-symbol">Recency</span>] &lt;= <span class="hljs-symbol">PERCENTILE</span>.<span class="hljs-symbol">INC</span> ( <span class="hljs-string">'RFMtable'</span>[<span class="hljs-symbol">Recency</span>], <span class="hljs-number">0.40</span> ), <span class="hljs-string">"4"</span>, 
+                    [<span class="hljs-symbol">Recency</span>] &lt;= <span class="hljs-symbol">PERCENTILE</span>.<span class="hljs-symbol">INC</span> ( <span class="hljs-string">'RFMtable'</span>[<span class="hljs-symbol">Recency</span>], <span class="hljs-number">0.60</span> ), <span class="hljs-string">"3"</span>, 
+                    [<span class="hljs-symbol">Recency</span>] &lt;= <span class="hljs-symbol">PERCENTILE</span>.<span class="hljs-symbol">INC</span> ( <span class="hljs-string">'RFMtable'</span>[<span class="hljs-symbol">Recency</span>], <span class="hljs-number">0.80</span> ), <span class="hljs-string">"2"</span>,
+                    <span class="hljs-string">"1"</span>
+                    )
+
+                    <span class="hljs-symbol">F</span> <span class="hljs-symbol">Score</span> = <span class="hljs-symbol">SWITCH</span> (
+                    <span class="hljs-symbol">TRUE</span> (),
+                    [<span class="hljs-symbol">Frequency</span>] &lt;= <span class="hljs-symbol">PERCENTILE</span>.<span class="hljs-symbol">INC</span> ( <span class="hljs-string">'RFMtable'</span>[<span class="hljs-symbol">Frequency</span>], <span class="hljs-number">0.20</span> ), <span class="hljs-string">"1"</span>,    
+                    [<span class="hljs-symbol">Frequency</span>] &lt;= <span class="hljs-symbol">PERCENTILE</span>.<span class="hljs-symbol">INC</span> ( <span class="hljs-string">'RFMtable'</span>[<span class="hljs-symbol">Frequency</span>], <span class="hljs-number">0.40</span> ), <span class="hljs-string">"2"</span>, 
+                    [<span class="hljs-symbol">Frequency</span>] &lt;= <span class="hljs-symbol">PERCENTILE</span>.<span class="hljs-symbol">INC</span> ( <span class="hljs-string">'RFMtable'</span>[<span class="hljs-symbol">Frequency</span>], <span class="hljs-number">0.60</span> ), <span class="hljs-string">"3"</span>, 
+                    [<span class="hljs-symbol">Frequency</span>] &lt;= <span class="hljs-symbol">PERCENTILE</span>.<span class="hljs-symbol">INC</span> ( <span class="hljs-string">'RFMtable'</span>[<span class="hljs-symbol">Frequency</span>], <span class="hljs-number">0.80</span> ), <span class="hljs-string">"4"</span>,
+                    <span class="hljs-string">"5"</span>
+                    )
+
+                    <span class="hljs-symbol">M</span> <span class="hljs-symbol">Score</span> = <span class="hljs-symbol">SWITCH</span> (
+                    <span class="hljs-symbol">TRUE</span> (),
+                    [<span class="hljs-symbol">Monetary</span>] &lt;= <span class="hljs-symbol">PERCENTILE</span>.<span class="hljs-symbol">INC</span> ( <span class="hljs-string">'RFMTable'</span>[<span class="hljs-symbol">Monetary</span>], <span class="hljs-number">0.20</span> ), <span class="hljs-string">"1"</span>,    
+                    [<span class="hljs-symbol">Monetary</span>] &lt;= <span class="hljs-symbol">PERCENTILE</span>.<span class="hljs-symbol">INC</span> ( <span class="hljs-string">'RFMTable'</span>[<span class="hljs-symbol">Monetary</span>], <span class="hljs-number">0.40</span> ), <span class="hljs-string">"2"</span>, 
+                    [<span class="hljs-symbol">Monetary</span>] &lt;= <span class="hljs-symbol">PERCENTILE</span>.<span class="hljs-symbol">INC</span> ( <span class="hljs-string">'RFMTable'</span>[<span class="hljs-symbol">Monetary</span>], <span class="hljs-number">0.60</span> ), <span class="hljs-string">"3"</span>, 
+                    [<span class="hljs-symbol">Monetary</span>] &lt;= <span class="hljs-symbol">PERCENTILE</span>.<span class="hljs-symbol">INC</span> ( <span class="hljs-string">'RFMTable'</span>[<span class="hljs-symbol">Monetary</span>], <span class="hljs-number">0.80</span> ), <span class="hljs-string">"4"</span>,
+                    <span class="hljs-string">"5"</span>
+                    )
+
+                    <span class="hljs-symbol">RFM</span> <span class="hljs-symbol">Score</span> = <span class="hljs-string">'RFMTable'</span>[<span class="hljs-symbol">R</span> <span class="hljs-symbol">Score</span>]&amp;<span class="hljs-string">'RFMTable'</span>[<span class="hljs-symbol">F</span> <span class="hljs-symbol">Score</span>]&amp;<span class="hljs-string">'RFMTable'</span>[<span class="hljs-symbol">M</span> <span class="hljs-symbol">Score</span>]
+
+                    <span class="hljs-symbol">Segment</span> = <span class="hljs-symbol">LOOKUPVALUE</span>(<span class="hljs-string">'Segments'</span>[<span class="hljs-symbol">Segment</span>],<span class="hljs-string">'Segments'</span>[<span class="hljs-symbol">Scores</span>],<span class="hljs-string">'RFMTable'</span>[<span class="hljs-symbol">RFM</span> <span class="hljs-symbol">Score</span>], <span class="hljs-string">"None"</span>)
+                    </code></pre><h2 id="segmentation-visualization-and-analysis">Segmentation Visualization and Analysis</h2>
+                    <h3 id="the-dashboard">The Dashboard</h3>
+                    <p>The dashboard should visually communicate three things:</p>
+                    <ol>
+                    <li>The distribution of each of the RFM variables</li>
+                    <li>The size and statistics of each customer segment</li>
+                    <li>The impact of the current customer segments and RFM values on sales and profits</li>
+                    </ol>
+                    <h4 id="rfm-distributions">RFM Distributions</h4>
+                    <img src="content/superstore-segment-r-dist.png" class="shadow" alt="histogram showing the distribution of the frequency variable as described below" height="200px">
+                    <p>The left half of the dashboard has separate sections for recency, frequency, and monetary that visualizes the distribution of these variables through bar charts.  Each section also highlights the average value through both a vertical line representation on the chart and a separate card with just the average underneath the variable label.</p>
+                    <h4 id="customer-segments">Customer Segments</h4>
+                    <img src="content/superstore-segment-customer-groups.png" class="shadow" alt="tree map showing the number of customer in each RFM segment" height="300px">
+                    <p>The size of each segment is represented by a tree map that represents the number of customers through the size of the box and a label in the bottom left corner of each box.  </p>
+                    
+                    <img src="content/superstore-segment-filtered.png" class="shadow" alt="dashboard filtered to only show data from the potential loyalist customer segment" height="350px">
+                    <p>Clicking on a box will filter the other visualizations to only include data from customers in that segment to give a better idea of how the segment relates to both the RFM variables and company sales.</p>
+                    <h4 id="sales-and-profits">Sales and Profits</h4>
+                    <img src="content/superstore-segment-sales-profits.png" class="shadow" alt="table of total and average sales for each customer segment and a box displaying total profits to the right" height="150px">
+                    <p>Underneath the customer segment tree map there is a table that shows the total and average sales for each segment.  To the right of this table there is a card that displays the total profits for 2017, which changes to represent an individual segment if one is selected from the tree map.</p>
+                    <h3 id="findings-and-insights">Findings and Insights</h3>
+                    <ul>
+                    <li>There are a lot of recent sales, then a few more spikes in the distribution before tapering off to the right</li>
+                    <li>Most customers make between 1 and 3 purchases with very few making more than 6</li>
+                    <li>The majority of purchases were less than $4000, but there were still several larger purchases</li>
+                    <li>The majority of customers are either lost/at risk of being lost or have the potential to be a high-value customer</li>
+                    <li>With the exception of the Cannot Lose Them segment having a higher-than-expected average, customers with higher total sales also had higher average sales</li>
+                    <li>More valuable and secure customers tended to have higher sales than at risk or lost customers</li>
+                    </ul>
+                    <p>Based on the RFM values, this superstore has had a lot of sales recently but does not make many sales per customer or very high sales.  Given that most customers are either at risk or being lost or have the potential of becoming more loyal customers, the superstore should consider promotions or advertising to secure these customers.  Based on sales data, having more secure customers will increase both the total and average sales.  In conclusion, increasing the frequency of purchases from each customer should be the priority of the superstore&#39;s marketing team.</p>
+
+                </div>
+                </div>
+            </div>
+        </div>
     
         <div class="modal fade modal-xl" id="telecom-churn-modal" tabindex="-1" aria-labelledby="Telecom Customer Project Writeup" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
