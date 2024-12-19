@@ -22,6 +22,23 @@ h1 {margin: 75px 0px 25px 0px;}
     background-color: #A50062;
 }
 
+#featured-header .btn-link, #home-heading a {
+    color: #EF7627;
+}
+
+#featured-header .btn-link:hover, #home-heading a:hover {
+    color: #bc4f06;
+}
+
+.gallery-card {
+    height: 200px;
+    width: 25vw;
+}
+
+.card-img-overlay {
+    background-color: #CDCDCDCC;
+}
+
 .projects-card {
     background-color: #CDCDCD;
     color: #14110F;
