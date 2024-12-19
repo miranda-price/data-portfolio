@@ -39,6 +39,8 @@ h1 {margin: 75px 0px 25px 0px;}
     background-color: #CDCDCDCC;
 }
 
+.gallery-card:hover {opacity: 85%;}
+
 .projects-card {
     background-color: #CDCDCD;
     color: #14110F;
