@@ -1,0 +1,356 @@
+Type,ID,Length,Steps,Stairs,Manual Door,Non WC Elevator,ADA,Direction,Reverse Direction,Report,Coords,Location
+floor,BR00_BR01,2,yes,yes,no,no,no,Move from ground floor to 1st floor,Move from 1st floor to ground floor,,,Burton
+floor,BR00_BR02,3,yes,yes,no,no,no,Move from ground floor to 2nd floor,Move from 2nd floor to ground floor,,,Burton
+floor,BR00_BR03,4,yes,yes,no,no,no,Move from ground floor to 3rd floor,Move from 3rd floor to gorund floor,,,Burton
+floor,BR01_BR02,2,yes,yes,no,no,no,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,,,Burton
+floor,BR01_BR03,3,yes,yes,no,no,no,Move from 1st floor to 3rd floor,Move from 3rd floor to 1st floor,,,Burton
+level,BR00_BR00A,1,no,no,no,no,yes,,,,,Burton
+level,BR01_BR01A,1,no,no,no,no,yes,,,,,Burton
+level,BR01_BR01B,1,no,no,no,no,yes,,,,,Burton
+level,BR01_BR01C,1,no,no,no,no,yes,,,,,Burton
+floor,RT01_RT02,2,no,no,no,no,yes,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,broken elevator in Morey/Rettner Hall,,Rettner
+floor,RT01_RT03,3,no,no,no,no,yes,Move from 1st floor to 3rd floor,Move from 3rd floor to 1st floor,broken elevator in Morey/Rettner Hall,,Rettner
+floor,RT02_RT03,2,no,no,no,no,yes,Move from 2nd floor to 3rd floor,Move from 3rd floor to 1st floor,broken elevator in Morey/Rettner Hall,,Rettner
+level,RT01_RT01A,1,no,no,no,no,yes,,,,,Rettner
+level,RT01_RT01B,1,no,no,no,no,yes,,,,,Rettner
+level,RT01_RT01C,1,no,no,no,no,yes,,,,,Rettner
+floor,MRG_MR01,2,no,no,no,no,yes,Move from ground floor to 1st floor,Move from 1st floor to ground floor,broken elevator in Morey Hall,,Morey
+floor,MRG_MR02,3,no,no,no,no,yes,Move from ground floor to 2nd floor,Move from 2nd floor to ground floor,broken elevator in Morey Hall,,Morey
+floor,MRG_MR03,4,no,no,no,no,yes,Move from ground floor to 3rd floor,Move from 3rd floor to ground floor,broken elevator in Morey Hall,,Morey
+floor,MRG_MR04,5,no,no,no,no,yes,Move from ground floor to 4th floor,Move from 4th floor to ground floor,broken elevator in Morey Hall,,Morey
+floor,MRG_MR05,6,no,no,no,no,yes,Move from ground floor to 5th floor,Move from 5th floor to ground floor,broken elevator in Morey Hall,,Morey
+floor,MR01_MR02,2,no,no,no,no,yes,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,broken elevator in Morey Hall,,Morey
+floor,MR01_MR03,3,no,no,no,no,yes,Move from 1st floor to 3rd floor,Move from 3rd floor to 1st floor,broken elevator in Morey Hall,,Morey
+floor,MR01_MR04,4,no,no,no,no,yes,Move from 1st floor to 4th floor,Move from 4th floor to 1st floor,broken elevator in Morey Hall,,Morey
+floor,MR01_MR05,5,no,no,no,no,yes,Move from 1st floor to 5th floor,Move from 5th floor to 1st floor,broken elevator in Morey Hall,,Morey
+floor,MR02_MR03,2,no,no,no,no,yes,Move from 2nd floor to 3rd floor,Move from 3rd floor to 2ndfloor,broken elevator in Morey Hall,,Morey
+floor,MR02_MR04,3,no,no,no,no,yes,Move from 2nd floor to 4th floor,Move from 4th floor to 2nd floor,broken elevator in Morey Hall,,Morey
+floor,MR02_MR05,4,no,no,no,no,yes,Move from 2nd floor to 5th floor,Move from 5th floor to 2nd floor,broken elevator in Morey Hall,,Morey
+floor,MR03_MR04,2,no,no,no,no,yes,Move from 3rd floor to 4th floor,Move from 4th floor to 3rd floor,broken elevator in Morey Hall,,Morey
+floor,MR03_MR05,3,no,no,no,no,yes,Move from 3rd floor to 5th floor,Move from 5th floor to 3rd floor,broken elevator in Morey Hall,,Morey
+level,MR02_MR02A,1,no,no,no,no,yes,,,,,Morey
+level,MR03_MR03A,1,no,no,no,no,yes,,,,,Morey
+level,MR03_MR03B,1,no,no,no,no,yes,,,,,Morey
+level,MR03_MR03C,1,no,no,no,no,yes,,,,,Morey
+connection,MRG_RT01,1,no,no,no,no,yes,Exit the separate elevator area to enter floor 1 of Rettner,Enter the separate elevator area between Rettner and Morey,broken push door button from Rettner 1 to Morey elevator,[43.1284174;-77.6299371],Morey/Rettner
+connection,MR01_RT01,1,yes,yes,no,no,no,Go down the steps to the right of the elevator to enter floor 1 of Rettner,Go up the steps next to the separate elevator area to enter floor 1 of Morey,,[43.1284231;-77.6299252],Morey/Rettner
+connection,MR02_RT02,1,no,no,no,no,yes,Take a right before the elevator to enter floor 2 of Rettner,Go past the lounge area and through the open doorway to enter floor 2 of Morey,,[43.1284231;-77.6299252],Morey/Rettner
+connection,MR03_RT03,1,no,no,no,no,yes,Take a right before the elevator to enter floor 3 of Rettner,Go past the audio/visual studio and lounge area to enter floor 3 of Morey,,[43.1284231;-77.6299252],Morey/Rettner
+floor,RRG_RR01,2,no,no,no,no,yes,Move from the ground floor to the 1st floor,Move from the 1st floor to the ground floor,broken silver elevator in Rush Rhees;broken green elevator in Rush Rhees; broken blue elevator in Rush Rhees; broken yellow elevator in Rush Rhees,,Rush Rhees
+floor,RRG_RR02,3,no,no,no,no,yes,Move from the ground floor to the 2nd floor,Move from the 2nd floor to the ground floor,broken silver elevator in Rush Rhees;broken green elevator in Rush Rhees; broken blue elevator in Rush Rhees; broken yellow elevator in Rush Rhees,,Rush Rhees
+floor,RRG_RR03,4,no,no,no,no,yes,Move from the ground floor to the 3rd floor,Move from the 3rd floor to the ground floor,broken silver elevator in Rush Rhees;broken green elevator in Rush Rhees; broken blue elevator in Rush Rhees; broken yellow elevator in Rush Rhees,,Rush Rhees
+floor,RRG_RR04,5,no,no,no,no,yes,Move from the ground floor to the 4th floor,Move from the 4th floor to the ground floor,broken silver elevator in Rush Rhees;broken green elevator in Rush Rhees; broken blue elevator in Rush Rhees; broken yellow elevator in Rush Rhees,,Rush Rhees
+floor,RR01_RR02,2,no,no,no,no,yes,Move from the 1st floor to the 2nd floor,Move from the 2nd floor to the 1st floor,broken silver elevator in Rush Rhees;broken green elevator in Rush Rhees; broken blue elevator in Rush Rhees; broken yellow elevator in Rush Rhees,,Rush Rhees
+floor,RR01_RR03,3,no,no,no,no,yes,Move from the 1st floor to the 3rd floor,Move from the 3rd floor to the 1st floor,broken silver elevator in Rush Rhees;broken green elevator in Rush Rhees; broken blue elevator in Rush Rhees; broken yellow elevator in Rush Rhees,,Rush Rhees
+floor,RR01_RR04,4,no,no,no,no,yes,Move from the 1st floor to the 4th floor,Move from the 4th floor to the 1st floor,broken silver elevator in Rush Rhees;broken green elevator in Rush Rhees; broken blue elevator in Rush Rhees; broken yellow elevator in Rush Rhees,,Rush Rhees
+level,RRG_RRGA,1,no,no,no,no,yes,,,,,Rush Rhees
+level,RRG_RRGB,1,no,no,no,no,yes,,,,,Rush Rhees
+level,RRG_RRGC,1,no,no,no,no,yes,,,,,Rush Rhees
+level,RR01_RR01A,1,no,no,no,no,yes,,,,,Rush Rhees
+level,RR01_RR01B,1,no,no,no,no,yes,,,,,Rush Rhees
+tunnel,MR02A_RRGC,,no,no,no,no,yes,Go through the double doors to exit Morey; take a right at the end of the hall; continue through the tunnel and enter the ground floor of Rush Rhees,Pass vending machines and staircase; follow the tunnel; go past the tunnel to Starbucks and go through the double doors on the right to enter Morey,broken push door button entering Morey/Rush Rhees tunnel,[43.1284964;-77.6293734][43.128453;-77.6293403][43.1285122;-77.6291817][43.128488;-77.6291669][43.1285151;-77.6290934],Eastman Quad
+path,EQPC_MR03A,,no,no,no,no,yes,Enter Morey hall,Leave Morey hall,broken push door button entering Morey from Eastman Quad,[43.1283983;-77.6294316][43.1284459;-77.6294641],Eastman Quad
+path,EQPB_MR03B,,yes,no,yes,no,no,Enter Morey hall,Leave Morey hall,,[43.1283214;-77.6296242][43.1283587;-77.6296534],Eastman Quad
+path,EQPA_MR03C,,yes,no,yes,no,no,Enter Morey hall,Leave Morey hall,,[43.1282524;-77.6298131][43.1283023;-77.6298476],Eastman Quad
+path,EQPA_EQPB,,no,no,no,no,yes,Head towards Rush Rhees library,Head away from Rush Rhees library,,[43.1282524;-77.6298131][43.1283214;-77.6296242],Eastman Quad
+path,EQPB_EQPC,,no,no,no,no,yes,Head towards Rush Rhees library,Head away from Rush Rhees library,,[43.1283214;-77.6296242][43.1283983; -77.6294316],Eastman Quad
+path,EQPD_RR01B,,yes,yes,no,no,no,Go up the stairs to enter Rush Rhees library,Leave Rush Rhees library,broken push door button entering Rush Rhees from Eastman Quad,[43.1282604; -77.6290755][43.1284752;-77.6290755],Eastman Quad
+path,EQPD_EQPE,,no,no,no,no,yes,Head away from Rush Rhees library,Head towards Rush Rhees library,,[43.1282604; -77.6290755][43.1284752; -77.6292172],Eastman Quad
+path,EQPD_EQPF,,no,no,no,no,yes,Head away from Rush Rhees library,Head towards Rush Rhees library,,[43.1282604; -77.6290755][43.1280535; -77.6289301],Eastman Quad
+path,EQPC_EQPE,,no,no,no,no,yes,Head towards Rush Rhees library,Head away from Rush Rhees library,,[43.1283983; -77.6294316][43.1284752; -77.6292172],Eastman Quad
+path,EQPB_EQPG,,no,no,no,no,yes,Head towards Bausch and Lomb,Head away from Bausch and Lomb,,[43.1283214;-77.6296242][43.1279103; -77.6293189],Eastman Quad
+path,EQPF_EQPG,,no,no,no,no,yes,Head towards Bausch and Lomb,Head away from Bausch and Lomb,,[43.1280535; -77.6289301][43.1279103; -77.6293189],Eastman Quad
+path,BR01A_WQPB,,yes,no,yes,no,no,Leave Burton hall,Enter Burton hall,,[43.129296;-77.6311965][43.129277;-77.6312532][43.1291711;-77.6311815],Wilson Quad
+path,BR01B_WQPB,,yes,no,yes,no,no,Leave Burton hall,Enter Burton hall,,[43.1292627;-77.6311965][43.129277;-77.6312532][43.1291711;-77.6311815],Wilson Quad
+path,BR01B_WQPA,,yes,no,yes,no,no,Leave Burton hall,Enter Burton hall,,[43.1292627;-77.6311965][43.1292248;-77.6313938][43.1291189;-77.6313241],Wilson Quad
+path,BR01C_WQPA,,yes,no,yes,no,no,Leave Burton hall,Enter Burton hall,,[43.129204;-77.6314433][43.1292248;-77.6313938][43.1291189;-77.6313241],Wilson Quad
+path,WQPA_WQPB,,no,no,no,no,yes,Head towards Crosby hall,Head towards Burton hall,,[43.1291189;-77.6313241][43.1291711;-77.6311815],Wilson Quad
+path,WQPA_WQPE,,no,no,no,no,yes,Head towards the fraternity quad,Head towards Burton hall,,[43.1291189;-77.6313241][43.1290393;-77.6315472],Wilson Quad
+path,WQPB_WQPD,,no,no,no,no,yes,Head towards Crosby hall,Head towards Burton hall,,[43.1291711;-77.6311815][43.1292818;-77.6308716],Wilson Quad
+path,WQPE_WQPF,,no,no,no,no,yes,Head towards LeChase hall,Head towards Burton hall,,[43.1290393;-77.6315472][43.1286759;-77.6312982],Wilson Quad
+path,WQPC_WQPD,,no,no,no,no,yes,Head towards the residence halls,Head towards LeChase and Rettner hall,,[43.1289216;-77.6306342][43.1292818;-77.6308716],Wilson Quad
+path,WQPC_WQPF,,no,no,no,no,yes,Head towards the fraternity quad,Head towards Wilson Commons,,[43.1289216;-77.6306342][43.1286759;-77.6312982],Wilson Quad
+path,WQPC_WQPG,,no,no,no,no,yes,Head towards Rettner hall,Head towards Wilson quad,,[43.1289216;-77.6306342][43.1285042;-77.6303344],Wilson Quad
+path,WQPG_WQPH,,no,no,no,no,yes,Head towards Rettner and Morey hall,Head towards LeChase hall,,[43.1285042;-77.6303344][43.1283342;-77.6302145],Wilson Quad
+path,RT01A_WQPG,,no,no,no,no,yes,Leave Rettner hall,Enter Rettner hall,broken push door button to Burton entrance facing Wilson Quad,[43.1286775;-77.630216][43.1285042;-77.6303344],Wilson Quad
+path,RT01C_WQPH,,no,no,no,no,yes,Leave Rettner hall,Enter Rettner hall,broken push door button to Burton entrance facing Lattimore,[43.1283643;-77.6301248][43.1283342;-77.6302145],Wilson Quad
+floor,BL01_BL02,2,no,no,no,no,yes,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,broken elevator in Bausch & Lomb Hall,,Bausch & Lomb
+floor,BL01_BL03,3,no,no,no,no,yes,Move from 1st floor to 3rd floor,Move from 3rd floor to 1st floor,broken elevator in Bausch & Lomb Hall,,Bausch & Lomb
+floor,BL01_BL04,4,no,no,no,no,yes,Move from 1st floor to 4th floor,Move from 4th floor to 1st floor,broken elevator in Bausch & Lomb Hall,,Bausch & Lomb
+floor,BL01_BL05,5,yes,yes,no,no,no,Move from 1st floor to 5th floor,Move from 5th floor to 1st floor,,,Bausch & Lomb
+floor,BL02_BL03,2,no,no,no,no,yes,Move from 2nd floor to 3rd floor,Move from 3rd floor to 2nd floor,broken elevator in Bausch & Lomb Hall,,Bausch & Lomb
+floor,BL02_BL04,3,no,no,no,no,yes,Move from 2nd floor to 4th floor,Move from 4th floor to 2nd floor,broken elevator in Bausch & Lomb Hall,,Bausch & Lomb
+floor,BL02_BL05,4,yes,yes,no,no,no,Move from 2nd floor to 5th floor,Move from 5th floor to 2nd floor,,,Bausch & Lomb
+level,BL01_BL01A,1,no,no,no,no,yes,,,,,Bausch & Lomb
+level,BL01_BL01B,1,no,no,no,no,yes,,,,,Bausch & Lomb
+level,BL01_BL01C,1,no,no,no,no,yes,,,,,Bausch & Lomb
+level,BL02_BL02A,1,no,no,no,no,yes,,,,,Bausch & Lomb
+floor,DWB_DW01,2,no,no,no,yes,no,Move from basement to 1st floor,Move from 1st floor to basement,broken elevator on south side of Dewey Hall,,Dewey
+floor,DW01_DW02,3,no,no,no,no,yes,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,broken elevator on north side of Dewey Hall,,Dewey
+floor,DW01_DW03,3,no,no,no,no,yes,Move from 1st floor to 3rd floor,Move from 3rd floor to 1st floor,broken elevator on north side of Dewey Hall,,Dewey
+floor,DW01_DW04,4,no,no,no,no,yes,Move from 1st floor to 4th floor,Move from 4th floor to 1st floor,broken elevator on north side of Dewey Hall,,Dewey
+floor,DW01_DW05,5,yes,yes,no,no,no,Move from 1st floor to 5th floor,Move from 5th floor to 1st floor,broken elevator on north side of Dewey Hall,,Dewey
+floor,DW02_DW03,2,no,no,no,no,yes,Move from 2nd floor to 3rd floor,Move from 3rd floor to 2nd floor,broken elevator on north side of Dewey Hall,,Dewey
+floor,DW02_DW04,3,no,no,no,no,yes,Move from 2nd floor to 4th floor,Move from 4th floor to 2nd floor,broken elevator on north side of Dewey Hall,,Dewey
+floor,DW02_DW05,4,yes,yes,no,no,no,Move from 2nd floor to 5th floor,Move from 5th floor to 2nd floor,broken elevator on north side of Dewey Hall,,Dewey
+level,DW01_DW01A,1,no,no,no,no,yes,,,,,Dewey
+level,DW01_DW01B,1,no,no,no,no,yes,,,,,Dewey
+level,DW01_DW01C,1,no,no,no,no,yes,,,,,Dewey
+level,DW01_DW01D,1,no,no,no,no,yes,,,,,Dewey
+level,DW02_DW02A,1,no,no,no,no,yes,,,,,Dewey
+floor,HT01_HT02,2,yes,yes,no,no,no,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,,,Hoyt
+level,HT01_HT01A,1,no,no,no,no,yes,,,,,Hoyt
+level,HT01_HT01B,1,no,no,no,no,yes,,,,,Hoyt
+level,HT01_HT01C,1,no,no,no,no,yes,,,,,Hoyt
+level,HT01_HT01D,1,no,no,no,no,yes,,,,,Hoyt
+level,HT01_HT01E,1,no,no,no,no,yes,,,,,Hoyt
+level,HT01_HT01F,1,no,no,no,no,yes,,,,,Hoyt
+level,HT02_HT02A,1,no,no,no,no,yes,,,,,Hoyt
+floor,LT01_LT02,2,no,no,no,yes,no,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,broken elevator in Lattimore Hall,,Lattimore
+floor,LT01_LT03,3,no,no,no,yes,no,Move from 1st floor to 3rd floor,Move from 3rd floor to 1st floor,broken elevator in Lattimore Hall,,Lattimore
+floor,LT01_LT04,4,no,no,no,yes,no,Move from 1st floor to 4th floor,Move from 4th floor to 1st floor,broken elevator in Lattimore Hall,,Lattimore
+floor,LT01_LT05,5,no,no,no,yes,no,Move from 1st floor to 5th floor,Move from 5th floor to 1st floor,broken elevator in Lattimore Hall,,Lattimore
+floor,LT02_LT03,2,no,no,no,yes,no,Move from 2nd floor to 3rd floor,Move from 3rd floor to 2nd floor,broken elevator in Lattimore Hall,,Lattimore
+floor,LT02_LT04,3,no,no,no,yes,no,Move from 2nd floor to 4th floor,Move from 4th floor to 2nd floor,broken elevator in Lattimore Hall,,Lattimore
+floor,LT02_LT05,4,no,no,no,yes,no,Move from 2nd floor to 5th floor,Move from 5th floor to 2nd floor,broken elevator in Lattimore Hall,,Lattimore
+floor,LT03_LT04,2,no,no,no,yes,no,Move from 3rd floor to 4th floor,Move from 4th floor to 3rd floor,broken elevator in Lattimore Hall,,Lattimore
+floor,LT03_LT05,3,no,no,no,yes,no,Move from 3rd floor to 5th floor,Move from 5th floor to 3rd floor,broken elevator in Lattimore Hall,,Lattimore
+level,LT01_LT01A,1,no,no,no,no,yes,,,,,Lattimore
+level,LT02_LT02A,1,no,no,no,no,yes,,,,,Lattimore
+level,LT03_LT03A,1,no,no,no,no,yes,,,,,Lattimore
+floor,IF01_IF02,2,no,no,no,no,yes,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,,,Interfaith Chapel
+floor,IF01_IF03,3,no,no,no,no,yes,Move from 1st floor to 3rd floor,Move from 3rd floor to 1st floor,,,Interfaith Chapel
+floor,IF02_IF03,2,no,no,no,no,yes,Move from 2nd floor to 1st floor,Move from 3rd floor to 2nd floor,,,Interfaith Chapel
+level,IF01_IF01A,1,no,no,no,no,yes,,,,,Interfaith Chapel
+level,IF01_IF01B,1,no,no,no,no,yes,,,,,Interfaith Chapel
+level,IF03_IF03A,1,no,no,no,no,yes,,,,,Interfaith Chapel
+path,EQPJ_LT03A,,no,no,no,no,yes,Enter 3rd floor of Lattimore Hall,Leave 3rd floor of Lattimore Hall,broken push door button to 3rd floor entrance of Lattimore,[43.1279743; -77.630548][43.1280116; -77.6305737],Eastman Quad
+tunnel,EQPO_LT02A,,no,no,no,no,yes,Enter 2nd floor of Lattimore to the left when leaving the painted tunnel,Leave 2nd floor of Lattimore keeping the painted tunnel to the right,broken push door button to 2nd floor entrance of Lattimore from tunnel area,[43.1282065; -77.6301582][43.1281765; -77.6302765],Morey/Lattimore
+tunnel,EQPO_MR02B,,no,no,no,no,yes,Enter 2nd floor of Morey to the right when leaving the painted tunnel,Leave 2nd floor of Morey keeping the painted tunnel to the left,broken push door button to 2nd floor entrance of Morey from tunnel area,[43.1282065; -77.6301582][43.128263; -77.6300103],Morey/Lattimore
+tunnel,EQPO_EQPP,,no,no,no,no,yes,Move through the painted tunnel away from Morey and Lattimore,Move through the painted tunnel away from Hoyt Hall,,[43.1282065; -77.6301582][43.1276582; -77.6297745],Eastman Quad
+path,EQPH_EQPI,,no,no,no,no,yes,Cross Eastman Quad heading towards Morey and Lattimore,Cross Eastman Quad heading towards Dewey and Bausch & Lomb,,[43.127733; -77.6297917][43.1281471; -77.6300906],Eastman Quad
+path,EQPA_EQPI,,no,no,no,no,yes,Head in the direction of Lattimore Hall,Head in the direction of Rush Rhees and Morey Hall,,[43.1282524; -77.6298131][43.1281471; -77.6300906],Eastman Quad
+path,EQPG_EQPH,,no,no,no,no,yes,Head in the direction of Hoyt and Dewey Hall,Head in the direction of Bausch & Lomb and Rush Rhees,,[43.1279103; -77.6293189][43.127733; -77.6297917],Eastman Quad
+path,EQPI_EQPJ,,no,no,no,no,yes,Head in the direction of Lattimore Hall,Head in the direction of Morey and Rush Rhees,,[43.1281471; -77.6300906][43.1279743; -77.630548],Eastman Quad
+path,EQPH_EQPK,,no,no,no,no,yes,Head in the direction of Dewey Hall,Head in the direction of Bausch & Lomb and Rush Rhees,,[43.127733; -77.6297917][43.1275533; -77.6302701],Eastman Quad
+path,EQPJ_EQPN,,no,no,no,no,yes,Head in the direction of Strong Auditorium,Head in the direction of Lattimore Hall,,[43.1279743; -77.630548][43.1277695; -77.6311172],Eastman Quad
+path,EQPK_EQPL,,no,no,no,no,yes,Head in the direction of the business school and chapel,Head in the direction of Dewey Hall,,[43.1275533; -77.6302701][43.12735; -77.6308183],Eastman Quad
+path,EQPJ_EQPK,,no,no,no,no,yes,Cross Eastman Quad heading towards Dewey,Cross Eastman Quad heading towards Lattimore,,[43.1279743; -77.630548][43.1275533; -77.6302701],Eastman Quad
+path,EQPM_EQPN,,no,no,no,no,yes,Head towards Lattimore Hall,Head in the direction of Dewey Hall,,[43.1275608; -77.6309685][43.1277695; -77.6311172],Eastman Quad
+path,EQPL_EQPM,,no,no,no,no,yes,Head in the direction of Lattimore Hall,Head towards Dewey Hall,,[43.12735; -77.6308183][43.1275608; -77.6309685],Eastman Quad
+path,EQPM_IF03A,,no,no,no,no,yes,Head away from Eastman Quad and enter the Interfaith Chapel,Leave the Interfaith Chapel and head towards Eastman Quad,broken push door button entering 3rd floor of the Interfaith Chapel,[43.1275608; -77.6309685][43.1270898; -77.6321881],Eastman Quad
+path,BL02A_EQPG,,no,no,no,no,yes,Leave the 2nd floor of Bausch & Lomb,Enter the 2nd floor of Bausch & Lomb,broken push door button to 2nd floor entrance of Bausch & Lomb,[43.1278652; -77.6292931][43.1279103; -77.6293189],Eastman Quad
+path,DW02A_EQPK,,no,no,no,no,yes,Leave the 2nd floor of Dewey Hall,Enter the 2nd floor of Dewey Hall,broken push door button to 2nd floor entrance of Dewey,[43.1275255; -77.6302473][43.1275533; -77.6302701],Eastman Quad
+path,EQPG_EQPJ,,no,no,no,no,yes,Diagonally cross Eastman Quad heading towards Lattimore,Diagonally cross Eastman Quad heading towards Bausch & Lomb,,[43.1279103; -77.6293189][43.1279743; -77.630548],Eastman Quad
+path,EQPB_EQPK,,no,no,no,no,yes,Diagonally cross Eastman Quad heading towards Dewey,Diagonally cross Eastman Quad heading towards Morey,,[43.1283214; -77.6296242][43.1275533; -77.6302701],Eastman Quad
+path,EQPB_EQPD,,no,no,no,no,yes,Diagonally cross Eastman Quad heading to Rush Rhees,Diagonally cross Eastman Quad heading to Morey,,[43.1283214; -77.6296242][43.1282604; -77.6290755],Eastman Quad
+path,EQPD_EQPG,,no,no,no,no,yes,Diagonally cross Eastman Quad heading towards Bausch & Lomb,Diagonally cross Eastman Quad heading towards Rush Rhees,,[43.1282604; -77.6290755][43.1279103; -77.6293189],Eastman Quad
+path,EQPJ_EQPM,,no,no,no,no,yes,Diagonally cross Eastman Quad heading towards the steps leaving the quad,Diagonally cross Eastman Quad heading towards Lattimore,,[43.1279743; -77.630548][43.1275608; -77.6309685],Eastman Quad
+path,EQPK_EQPM,,no,no,no,no,yes,Diagonally cross Eastman Quad heading towards the steps leaving the quad,Diagonally cross Eastman Quad heading towards Dewey,,[43.1275533; -77.6302701][43.1275608; -77.6309685],Eastman Quad
+tunnel,EQPP_HT01A,,no,no,no,no,yes,Enter Hoyt Hall through the door at the end of the tunnel,Leave Hoyt Hall to enter the tunnel area,broken push door button entering Hoyt from the tunnels,[43.1276582; -77.6297745][43.1274836; -77.629653],Eastman Quad
+path,EQPR_HT01B,,yes,no,yes,no,no,Enter Hoyt Hall,Leave Hoyt Hall,,[43.1273606; -77.6293079][43.1275458; -77.6294423][43.1275262; -77.629496][43.127635; -77.6296616],Outside Hoyt
+path,EQPQ_HT01E,,yes,no,yes,no,no,Enter Hoyt Hall,Leave Hoyt Hall,,[43.1272868; -77.6297036][43.1274317; -77.6297281][43.1274348; -77.629703],Outside Hoyt
+path,EQPQ_HT01F,,no,no,no,no,yes,Enter Hoyt Hall,Leave Hoyt Hall,broken push door button to the 1st floor Hoyt entrance facing Dewey,[43.1272868; -77.6297036][43.1274317; -77.6297281][43.1274637; -77.6296951],Outside Hoyt
+path,EQPR_HT02A,,yes,yes,no,no,no,Enter Hoyt Hall,Leave Hoyt Hall,,[43.1273606; -77.6293079][43.127547; -77.6294428][43.127527; -77.6294949][43.127563; -77.6295909][43.1276391; -77.6296539][43.1276141; -77.6297259],Outside Hoyt
+path,EQPQ_HT02A,,yes,yes,no,no,no,Enter Hoyt Hall,Leave Hoyt Hall,,[43.1272868; -77.6297036][43.127433; -77.6297307][43.127503; -77.6297335][43.1275871; -77.629791][43.1276141; -77.6297259],Outside Hoyt
+tunnel,BL01A_RRGB,,yes,yes,yes,no,no,Enter tunnels; take left door at the end of the hall; follow the tunnel; take a left at the intersection; continue; go through door marked Rush Rhees,Go through the door to enter the tunnel; follow the tunnel; take a right at the intersection; continue and take a right after the next door; enter main tunnel area,,[43.1279425; -77.6290296][43.1279647; -77.6290445][43.1279875; -77.6289774][43.1280148; -77.6289992][43.1280951; -77.6287784],Eastman Quad
+path,BL01B_EQPR,,yes,yes,yes,no,no,Leave the 1st floor of Bausch & Lomb,Enter the 1st floor of Bausch & Lomb,,[43.1279416; -77.6290303][43.1273606; -77.6293079],Outside Hoyt
+tunnel,BL01C_EQPP,,no,no,no,no,yes,Leave Bausch & Lomb and enter the tunnel area,Enter Bausch & Lomb from the tunnel area,broken push door button to the Bausch & Lomb entrance facing Hoyt,[43.1274095; -77.6291748][43.1276582; -77.6297745],Outside Hoyt
+tunnel,DW01A_EQPP,,no,no,no,no,yes,Leave Dewey Hall and enter the tunnel area,Enter Dewey Hall from the tunnel area,broken push door button to the Dewey entrance facing Hoyt,[43.1276196; -77.6298712][43.1276582; -77.6297745],Outside Hoyt
+path,DW01B_EQPQ,,no,no,yes,no,no,Leave the 1st floor of Dewey Hall,Enter the 1st floor of Dewey Hall,,[43.1272197; -77.629882][43.1272868; -77.6297036],Outside Hoyt
+floor,ML01_ML02,2,no,no,no,no,yes,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,broken elevator in Meliora,,Meliora
+floor,ML01_ML03,3,no,no,no,no,yes,Move from 1st floor to 3rd floor,Move from 3rd floor to 1st floor,broken elevator in Meliora,,Meliora
+floor,ML02_ML03,2,no,no,no,no,yes,Move from 2nd floor to 3rd floor,Move from 3rd floor to 2nd floor,broken elevator in Meliora,,Meliora
+floor,ML02_ML04,3,no,no,no,no,yes,Move from 2nd floor to 4th floor,Move from 4th floor to 2nd floor,broken elevator in Meliora,,Meliora
+floor,ML03_ML04,2,no,no,no,no,yes,,,,,Meliora
+level,ML02_ML02A,1,no,no,no,no,yes,,,,,Meliora
+level,ML02_ML02B,1,no,no,no,no,yes,,,,,Meliora
+level,ML03_ML03A,1,no,no,no,no,yes,,,,,Meliora
+level,ML03_ML03B,1,no,no,no,no,yes,,,,,Meliora
+path,EQPAB_EQPQ,,no,no,no,no,yes,Move towards Hoyt Hall,Move towards Gavett Hall,,[43.1269221; -77.6294539][43.1272868; -77.6297136],Eastman Quad
+path,EQPAA_EQPR,,no,no,no,no,yes,Move towards Hoyt Hall,Move towards Gavett Hall,,[43.1270544; -77.6290913][43.1273606; -77.6293079],Eastman Quad
+path,EQPAA_EQPAB,,no,no,no,no,yes,Move past Gavette hall towards the Science Quad,Move past Gavette towards Meliora Hall,,[43.1270544; -77.6290913][43.1269221; -77.6294539],Eastman Quad
+path,EQPAA_EQPZ,,no,no,no,no,yes,Move away from Gavette towards Meliora,Move away from Meliora towards Gavett,,[43.1270544; -77.6290913][43.1273025; -77.6284454],Eastman Quad
+path,EQPS_EQPT,,no,no,no,no,yes,Move along Meliora plaza away from Bausch & Lomb,Move along Meliora plaza towards Bausch & Lomb,,[43.1274348; -77.6285361][43.1274698; -77.6284278][43.127423; -77.6283975][43.127614; -77.6278789],Eastman Quad
+path,EQPS_EQPZ,,yes,yes,no,no,no,Exit Meliora plaza by the staircase,Enter Meliora plaza by the staircase,,[43.1274348; -77.6285361][43.1273025; -77.6284454],Eastman Quad
+path,EQPS_EQPV,,no,no,no,no,yes,Move along Meliora plaza towards from Rush Rhees,Move along Meliora plaza away from Rush Rhees,,[43.1274348; -77.6285361][43.1277656; -77.628706],Eastman Quad
+path,EQPU_EQPV,,no,no,no,no,yes,Move along Meliora plaza towards Bausch & Lomb,Move along Meliora plaza away from Bausch & Lomb,,[43.1280854; -77.6278033][43.1277656; -77.628706],Eastman Quad
+path,EQPV_EQPW,,no,no,no,no,yes,Leave Eastman Quad and head towards Rush Rhees,Head towards Eastman Quad,,[43.1277656; -77.628706][43.128022; -77.6288722],Eastman Quad
+path,EQPW_EQPY,,yes,yes,no,no,no,Move along Rush Rhees away from Eastman Quad,Move along Rush Rhees towards Eastman Quad,,[43.128022; -77.6288722][43.1284383; -77.6277806],Eastman Quad
+path,EQPU_EQPX,,no,no,no,no,yes,Head away from Meliora towards the road,Head towards Meliora Hall,,[43.1280854; -77.6278033][43.1277077; -77.6274823],Eastman Quad
+path,EQPU_EQPY,,no,no,no,no,yes,Head away from Meliora towards the road,Head towards Meliora Hall,,[43.1280854; -77.6278033][43.1284383; -77.6277806],Eastman Quad
+path,EQPX_EQPAE,,no,no,no,no,yes,Continue to a intersection of sidewalks,Move away from the road alongside Meliora,,[43.1277077; -77.6274823][43.1275754; -77.6277278],Eastman Quad
+path,EQPAC_EQPAE,,no,no,no,no,yes,Continue alongside Meliora,Continue alongside Meliora,,[43.1273935; -77.6282075][43.1275754; -77.6277278],Eastman Quad
+path,EQPT_ML03B,,no,no,no,no,yes,Enter the 3rd floor of Meliora,Leave the 3rd floor of Meliora,broken push door button to 3rd floor Meliora entrance facing Harkness,[43.127614; -77.6278789][43.1276646; -77.6279163],Eastman Quad
+path,EQPAC_ML02B,,yes,yes,no,no,no,Enter the 2nd floor of Meliora,Leave the 2nd floor of Meliora,,[43.1273935; -77.6282075][43.1274581; -77.6282562],Eastman Quad
+path,EQPAD_ML03A,,no,no,no,no,yes,Enter the 3rd floor of Meliora,Leave the 3rd floor of Meliora,broken push door button to 3rd floor Meliora entrance facing Eastman Quad,[43.1278979; -77.628317][43.1278794; -77.6283018],Eastman Quad
+path,EQPX_EQPY,,no,no,no,no,yes,Take a slight left; continue to the road; turn left and head towards Rush Rhees,Move alongside the road until just before a curve in the sidewalk and follow the path to the right,,[43.1277077; -77.6274823][43.1279881; -77.6273626][43.1284383; -77.6277806],Eastman Quad
+path,EQPF_EQPV,,no,no,no,no,yes,Leave Eastman Quad and head towards Meliora,Head towards Eastman Quad,,[43.1280535; -77.6289301][43.1280212; -77.6288848][43.1277656; -77.628706],Eastman Quad
+path,EQPF_EQPW,,no,no,no,no,yes,Leave Eastman Quad and head towards Rush Rhees,Head towards Eastman Quad,,[43.1280535; -77.6289301][43.128022; -77.6288722],Eastman Quad
+path,EQPAF_RRGA,,no,no,no,no,yes,Enter ground floor of Rush Rhees,Leave ground floor of Rush Rhees,,[43.1287332; -77.6279317][43.1287284; -77.6279537],Eastman Quad
+path,EQPAF_EQPY,,no,no,no,no,yes,Move alongside Rush Rhees towards the entrance,Move alongside Rush Rhees away from the entrance,,[43.1287332; -77.6279317][43.1284383; -77.6277806],Eastman Quad
+path,EQPAE_EQPT,,yes,yes,no,no,no,Go up the steps to the plaza,Go down the steps from the plaza,,[43.1275754; -77.6277278][43.1276518; -77.6277819][43.127614; -77.6278789],Eastman Quad
+tunnel,ML02A_RRGB,,yes,yes,yes,no,no,Take a right after the door to the tunnels; follow the tunnel; take a right at the intersection; continue to a door marked Rush Rhees,Go through the door to enter the tunnel; follow the tunnel; take a left at the intersection; continue; enter the door at the end of the hall on the left,,[43.1277552; -77.6287196][43.1280019; -77.6289377][43.1279881; -77.6289792][43.1280157; -77.6290019][43.1281014; -77.6287809],Eastman Quad
+tunnel,BL01A_ML02A,,yes,yes,yes,no,no,Enter tunnels; take left door at the end of the hall; follow the tunnel; take a right at the intersection; continue; enter the door at the end of the hall on the left,Take a right after the door to the tunnels; follow the tunnel; take a left at the intersection; continue to the door to Bausch and Lomb,,[43.1277064; -77.6296434][43.1280019; -77.6289377][43.1279633; -77.6290434][43.1277552; -77.6287196],Eastman Quad
+floor,DG01_DG02,2,no,no,no,no,yes,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,broken elevator in Douglass,,Douglass
+floor,DG01_DG03,3,no,no,no,no,yes,Move from 1st floor to 3rd floor,Move from 3rd floor to 1st floor,broken elevator in Douglass,,Douglass
+floor,DG01_DG04,4,no,no,no,no,yes,Move from 1st floor to 4th floor,Move from the 4th floor to 1st floor,broken elevator in Douglass,,Douglass
+floor,DG02_DG03,2,no,no,no,no,yes,Move from 2nd floor to 3rd floor,Move from 3rd floor to 2nd floor,broken elevator in Douglass,,Douglass
+floor,DG02_DG04,3,no,no,no,no,yes,Move from 2nd floor to 4th floor,Move from 4th floor to 2nd floor,broken elevator in Douglass,,Douglass
+floor,DG03_DG04,4,no,no,no,no,yes,Move from 3rd floor to 4th floor,Move from 4th floor to 3rd floor,broken elevator in Douglass,,Douglass
+level,DG01_DG01A,1,no,no,no,no,yes,,,,,Douglass
+level,DG02_DG02A,1,no,no,no,no,yes,,,,,Douglass
+level,DG02_DG02B,1,no,no,no,no,yes,,,,,Douglass
+level,DG02_DG02C,1,no,no,no,no,yes,,,,,Douglass
+level,DG03_DG03A,1,no,no,no,no,yes,,,,,Douglass
+floor,WC01_WC02,2,no,no,no,no,yes,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,broken elevator in Wilson Commons,,Wilson Commons
+floor,WC01_WC03,3,no,no,no,no,yes,Move from 1st floor to 3rd floor,Move from 3rd floor to 1st floor,broken elevator in Wilson Commons,,Wilson Commons
+floor,WC01_WC04,4,no,no,no,no,yes,Move from 1st floor to 4th floor,Move from the 4th floor to 1st floor,broken elevator in Wilson Commons,,Wilson Commons
+floor,WC01_WC05,5,no,no,no,no,yes,Move from 1st floor to 5th floor,Move from 5th floor to 1st floor,broken elevator in Wilson Commons,,Wilson Commons
+floor,WC02_WC03,2,no,no,no,no,yes,Move from 2nd floor to 3rd floor,Move from 3rd floor to 2nd floor,broken elevator in Wilson Commons,,Wilson Commons
+floor,WC02_WC04,3,no,no,no,no,yes,Move from 2nd floor to 4th floor,Move from 4th floor to 2nd floor,broken elevator in Wilson Commons,,Wilson Commons
+floor,WC02_WC05,4,no,no,no,no,yes,Move from 2nd floor to 5th floor,Move from 5th floor to 2nd floor,broken elevator in Wilson Commons,,Wilson Commons
+floor,WC03_WC04,2,no,no,no,no,yes,Move from 3rd floor to 4th floor,Move from 4th floor to 3rd floor,broken elevator in Wilson Commons,,Wilson Commons
+floor,WC03_WC05,3,no,no,no,no,yes,Move from 3rd floor to 5th floor,Move from 5th floor to 3rd floor,broken elevator in Wilson Commons,,Wilson Commons
+floor,WC04_WC05,2,no,no,no,no,yes,Move from 4th floor to 5th floor,Move from 5th floor to 4th floor,broken elevator in Wilson Commons,,Wilson Commons
+level,WC02_WC02A,1,no,no,no,no,yes,,,,,Wilson Commons
+level,WC02_WC02B,1,no,no,no,no,yes,,,,,Wilson Commons
+level,WC03_WC03A,1,no,no,no,no,yes,,,,,Wilson Commons
+level,WC03_WC03B,1,no,no,no,no,yes,,,,,Wilson Commons
+level,WC04_WC04A,1,no,no,no,no,yes,,,,,Wilson Commons
+tunnel,DG02C_WC03A,,no,no,no,no,yes,move through the tunnel to enter Wilson Commons,move through the tunnel to enter Douglass,broken push door button entering 3rd floor of Wilson commons from the tunnels; broken push door button entering 2nd floor of Douglass from the tunnels,[43.1289934; -77.6291547][43.1289073; -77.6293854],Eastman Quad
+tunnel,RRGC_WC03B,,no,no,no,no,yes,Take a right when exiting 3rd floor of Wilson Commons; take a left at the end of the hall; continue through the tunnel and enter the ground floor of Rush Rhees,Pass vending machines and staircase; follow the tunnel; take the first right after the tunnel turns left; enter Wilson Commons at the end of the hall,broken push door button entering 3rd floor of Wilson commons from the tunnels,[43.128517; -77.6290924][43.1284887; -77.6291643][43.1288542; -77.6294326],Eastman Quad
+tunnel,DG03A_RR01A,,no,no,no,no,yes,move through the builidng connection to enter Rush Rhees,move through the building connection to enter Douglass,,[43.1287898; -77.6287309][43.128743; -77.6286939],Eastman Quad
+floor,HUB_HU01,2,no,no,no,no,yes,Move from basement to 1st floor,Move from 1st floor to basement,broken elevator in Hutchinson,,Hutchinson
+floor,HU01_HU02,2,no,no,no,no,yes,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,broken elevator in Hutchinson,,Hutchinson
+floor,HU01_HU03,3,no,no,no,no,yes,Move from 1st floor to 3rd floor,Move from 3rd floor to 1st floor,broken elevator in Hutchinson,,Hutchinson
+floor,HU01_HU04,4,no,no,no,no,yes,Move from 1st floor to 4th floor,Move from the 4th floor to 1st floor,broken elevator in Hutchinson,,Hutchinson
+floor,HU02_HU03,2,no,no,no,no,yes,Move from 2nd floor to 3rd floor,Move from 3rd floor to 2nd floor,broken elevator in Hutchinson,,Hutchinson
+floor,HU02_HU04,3,no,no,no,no,yes,Move from 2nd floor to 4th floor,Move from 4th floor to 2nd floor,broken elevator in Hutchinson,,Hutchinson
+floor,HL01_HL02,2,no,no,no,no,yes,Move from 1st floor to 2nd floor,Move from 2nd floor to 1st floor,broken elevator in Hylan,,Hylan
+floor,HL01_HL03,3,no,no,no,no,yes,Move from 1st floor to 3rd floor,Move from 3rd floor to 1st floor,broken elevator in Hylan,,Hylan
+floor,HL01_HL04,4,no,no,no,no,yes,Move from 1st floor to 4th floor,Move from the 4th floor to 1st floor,broken elevator in Hylan,,Hylan
+floor,HL01_HL05,5,no,no,no,no,yes,Move from 1st floor to 5th floor,Move from 5th floor to 1st floor,broken elevator in Hylan,,Hylan
+floor,HL01_HL06,6,no,no,no,no,yes,Move from 1st floor to 6th floor,Move from 6th floor to 1st floor,broken elevator in Hylan,,Hylan
+floor,HL01_HL07,7,no,no,no,no,yes,Move from 1st floor to 7th floor,Move from 7th floor to 1st floor,broken elevator in Hylan,,Hylan
+floor,HL01_HL08,8,no,no,no,no,yes,Move from 1st floor to 8th floor,Move from 8th floor to 1st floor,broken elevator in Hylan,,Hylan
+floor,HL01_HL09,9,no,no,no,no,yes,Move from 1st floor to 9th floor,Move from 9th floor to 1st floor,broken elevator in Hylan,,Hylan
+floor,HL01_HL10,10,no,no,no,no,yes,Move from 1st floor to 10th floor,Move from 10th floor to 1st floor,broken elevator in Hylan,,Hylan
+floor,HL01_HL11,11,no,no,no,no,yes,Move from 1st floor to 11th floor,Move from 11th floor to 1st floor,broken elevator in Hylan,,Hylan
+floor,HL02_HL03,2,no,no,no,no,yes,Move from 2nd floor to 3rd floor,Move from 3rd floor to 2nd floor,broken elevator in Hylan,,Hylan
+floor,HL02_HL04,3,no,no,no,no,yes,Move from 2nd floor to 4th floor,Move from 4th floor to 2nd floor,broken elevator in Hylan,,Hylan
+floor,HL02_HL05,4,no,no,no,no,yes,Move from 2nd floor to 5th floor,Move from 5th floor to 2nd floor,broken elevator in Hylan,,Hylan
+floor,HL02_HL06,5,no,no,no,no,yes,Move from 2nd floor to 6th floor,Move from 6th floor to 2nd floor,broken elevator in Hylan,,Hylan
+floor,HL02_HL07,6,no,no,no,no,yes,Move from 2nd floor to 7th floor,Move from 7th floor to 2nd floor,broken elevator in Hylan,,Hylan
+floor,HL02_HL08,7,no,no,no,no,yes,Move from 2nd floor to 8th floor,Move from 8th floor to 2nd floor,broken elevator in Hylan,,Hylan
+floor,HL02_HL09,8,no,no,no,no,yes,Move from 2nd floor to 9th floor,Move from 9th floor to 2nd floor,broken elevator in Hylan,,Hylan
+floor,HL02_HL10,9,no,no,no,no,yes,Move from 2nd floor to 10th floor,Move from 10th floor to 2nd floor,broken elevator in Hylan,,Hylan
+floor,HL02_HL11,10,no,no,no,no,yes,Move from 2nd floor to 11th floor,Move from 11th floor to 2nd floor,broken elevator in Hylan,,Hylan
+level,HU01_HU01A,1,no,no,no,no,yes,,,,,Hutchinson
+level,HU02_HU02A,1,no,no,no,no,yes,,,,,Hutchinson
+level,HL01_HL01A,1,no,no,no,no,yes,,,,,Hylan
+level,HL02_HL02A,1,no,no,no,no,yes,,,,,Hylan
+path,SQPA_SQPW,,no,no,no,no,yes,move towards Gavett and Hopeman,move towards Wegmans Hall,,[43.1262845; -77.6295843][43.1265819; -77.6295891],Science Quad
+path,SQPV_SQPW,,no,no,no,no,yes,move towards Gavett and Hopeman,move towards Hoyt Hall,,[43.126862; -77.6296154][43.1265819; -77.6295891],Science Quad
+path,SQPA_SQPC,,no,no,no,no,yes,move along the side of Wegmans,move along the side of Wegmans,,[43.1262845; -77.6295843][43.1261468; -77.6295831],Science Quad
+path,SQPB_SQPC,,no,no,no,no,yes,move along plaza outside Wegmans,move along plaza outside Wegmans,,[43.1259893; -77.6295992][43.1261468; -77.6295831],Science Quad
+path,SQPB_SQPE,,no,no,no,no,yes,move towards Goergen Hall,away from Goergen Hall,,[43.1259893; -77.6295992][-77.6295992; -77.6294368],Science Quad
+path,SQPE_SQPF,,no,no,no,no,yes,move towards Wilmot Hall,move away from Wilmot Hall towards Goergen Hall,,[43.1259919; -77.6294368][43.1259958; -77.6293262],Science Quad
+path,SQPB_SQPG,,no,no,no,no,yes,move across the science quad towards the plaza outside Carlson,move away from Carlson across the science quad,,[43.1259893; -77.6295992][43.1255987; -77.6298828],Science Quad
+path,SQPB_SQPD,,no,no,no,no,yes,move along the plaza outside of Wegmans,move along the plaza outside of Wegmans,,[43.1259893; -77.6295992][43.1259828; -77.6298489],Science Quad
+path,SQPD_SQPM,,no,no,no,no,yes,move along Wegmans hall towards the road,move away from the road alongside Wegmans,,[43.1259828; -77.6298489][43.1259977; -77.6304611],Science Quad
+path,SQPM_SQPN,,no,no,no,no,yes,move towards Hutchinson and Hylan,move away from Hutchinson and Hylan,,[43.1259977; 43.1259977][43.1256953; -77.6304892],Science Quad
+path,SQPG_SQPM,,no,no,no,no,yes,move towards Hutchinson and Wegmans,move to the center of the science quad,,[43.1255987; -77.6298828][43.1259977; -77.6304611],Science Quad
+path,SQPG_SQPH,,no,no,no,no,yes,move towards Goergen Hall,move to the center of the science quad,,[43.1255987; -77.6298828][43.1254369; -77.6295797],Science Quad
+path,SQPG_SQPJ,,no,no,no,no,yes,move to the plaza in front of Carlson,move to the center of the science quad,,[43.1255987; -77.6298828][43.1253521; -77.6300949],Science Quad
+path,SQPJ_SQPK,,no,no,no,no,yes,cross the plaza to Hutchinson Hall,cross the plaza away from Hutchinson Hall,,[43.1253521; -77.6300949][43.1253461; -77.6302926],Science Quad
+path,SQPK_SQPL,,no,no,no,no,yes,move towards Hylan Hall,move away from Hylan Hall,,[43.1253461; -77.6302926][43.1254637; -77.6302977],Science Quad
+path,SQPH_SQPI,,no,no,no,no,yes,move alongside Goergen Hall,move alongside Goergen Hall,,[43.1254369; -77.6295797][43.1253716; -77.6295797],Science Quad
+path,SQPI_SQPJ,,no,no,no,no,yes,move towards the plaza in front of Calson,move towards Goergen Hall,,[43.1253716; -77.6295797][43.1253521; -77.6300949],Science Quad
+path,SQPI_SQPS,,no,no,no,no,yes,move away from the science quad to a sidewalk intersection,move towards th science quad,,[43.1253716; -77.6295797][43.1250548; -77.6295283],Science Quad
+path,SQPR_SQPS,,no,no,no,no,yes,move towards the Computer Studies Building,move away from the Computer Studies Building,,[43.1249462; -77.629303][43.1250548; -77.6295283],Science Quad
+path,SQPQ_SQPR,,no,no,no,no,yes,move alongside the road,move alongside the road,,[43.1248229; -77.6294358][43.1249462; -77.629303],Science Quad
+path,SQPO_SQPQ,,no,no,no,no,yes,move alongside the road,move alongside the road,,[43.1245268; -77.6299529][43.1245541; -77.6295628][43.1248229; -77.6294358],Science Quad
+path,SQPO_SQPP,,no,no,no,no,yes,move alongside the road,move alongside the road,,[43.1245268; -77.6299529][43.1245118; -77.6307332][43.1245464; -77.630828][43.1245324; -77.6312908],Science Quad
+path,SQPP_SQPT,,no,no,no,no,yes,move alongside the road,move alongside the road,,[43.1245324; -77.6312908][43.1249057; -77.6312599],Science Quad
+path,SQPT_SQPU,,no,no,no,no,yes,move alongside the road,move alongside the road,,[43.1249057; -77.6312599][43.1259011; -77.6312961],Science Quad
+path,SQPM_SQPU,,no,no,no,no,yes,move alongside the road,move alongside the road,,[43.1259977; -77.6304611][43.125917; -77.6307556][43.1259011; -77.6312961],Science Quad
+path,EQPQ_SQPV,,no,no,no,no,yes,move away from Hoyt towards the science quad,move away from the science quad towards Hoyt,,[43.1272868; -77.6297036][43.1271637; -77.6296222][43.126862; -77.6296154],Science Quad
+path,EQPAB_SQPV,,no,no,no,no,yes,move alongside Gavette Hall,move alongside Gavette Hall,,[43.1269221; -77.6294539][43.126862; -77.6296154],Science Quad
+path,GR01A_SQPE,,no,no,no,no,yes,leave Goergen Hall,enter Goergen Hall,broken push door button entering Goergen from north side,[43.1258061; -77.6293749][43.1258582; -77.6293776][43.1258621; -77.6294291][43.1259919; -77.6294368],Science Quad
+path,SQPF_WM01A,,no,no,no,no,yes,enter Wilmot Hall,leave Wilmot Hall,broken push door button entering Wilmot Hall,[43.1259958; -77.6293262][43.1258751; -77.6293226][43.1258735; -77.6292802],Science Quad
+path,GR01C_SQPH,,no,no,no,no,yes,leave Goergen Hall,enter Goergen Hall,broken push door button entering Goergen from west side,[43.1254365; -77.6295029][43.1254369; -77.6295797],Science Quad
+path,GR01B_SQPR,,no,no,no,no,yes,leave Goergen Hall,enter Goergen Hall,broken push door button entering Goergen from south side,[43.1253489; -77.6292536][43.1249462; -77.629303],Science Quad
+path,SQPO_SQPX,,no,no,no,no,yes,move towards the connection between Carlson and Computer Studies,move away the connection between Carlson and Computer Studies,,[43.1245268; -77.6299529][43.1250235; -77.6300425],Science Quad
+path,SQPJ_SQPX,,no,no,no,no,yes,move towards the connection between Carlson and Computer Studies,move away the connection between Carlson and Computer Studies,,[43.1253521; -77.6300949][43.1250235; -77.6300425],Science Quad
+path,CS02A_SQPX,,no,no,no,no,yes,leave the Computer Studies Building,enter the Computer Studies Buildings,broken push door button entering Computer Studies,[43.1250641; -77.6300337][43.1250235; -77.6300425],Science Quad
+path,CL02A_SQPX,,no,no,no,no,yes,leave Carlson library,enter Carlson library,broken push door button entering Carlson,[43.1250776; -77.6300545][43.1250235; -77.6300425],Science Quad
+path,HL02A_SQPL,,no,no,no,no,yes,leave Hylan Hall,enter Hylan Hall,broken push door button entering 2nd floor of Hylan,[43.1254836; -77.6302968][43.1254637; -77.6302977],Science Quad
+path,SQPL_SQPY,,no,no,no,no,yes,move towards Hutchinson Hall,move away from Hutchinson Hall,,[43.1254637; -77.6302977][43.1254583; -77.6305065],Science Quad
+path,SQPY_SQPZ,,no,no,no,no,yes,go down the stairs between Hutchinson and Hylan Hall,go up the stairs between Hutchinson and Hylan Hall,,[43.1254583; -77.6305065][43.1255468; -77.6304854],Science Quad
+path,SQPN_SQPZ,,no,no,no,no,yes,move away from Hutchinson Hall,move between Hutchinson and Hylan,,[43.1256953; -77.6304892][43.1255468; -77.6304854],Science Quad
+path,HU01A_SQPZ,,no,no,no,no,yes,leave Hutchinson Hall,enter Hutcinson Hall,broken push door button entering 1st floor of Hutchinson,[43.1255878; -77.6305419][43.1255926; -77.6304217],Science Quad
+path,HL01A_SQPZ,,no,no,no,no,yes,leave Hylan Hall,leave Hylan Hall,broken push door button entering 1st floor of Hylan,[43.1256953; -77.6304892][43.1255468; -77.6304854],Science Quad
+connection,GR01_WM01,,yes,no,no,no,no,move from Goergen to Wilmot,move from Wilmot to Goergen,,[43.1256315; -77.6292359],Goergen/Wilmot
+connection,GR02_WM02,,yes,no,no,no,no,move from Goergen to Wilmot,move from Wilmot to Goergen,,[43.1256315; -77.6292359],Goergen/Wilmot
+connection,GR03_WM03,,yes,no,no,no,no,move from Goergen to Wilmot,move from Wilmot to Goergen,,[43.1256315; -77.6292359],Goergen/Wilmot
+connection,GR04_WM04,,yes,no,no,no,no,move from Goergen to Wilmot,move from Wilmot to Goergen,,[43.1256315; -77.6292359],Goergen/Wilmot
+connection,GR05_WM05,,yes,no,no,no,no,move from Goergen to Wilmot,move from Wilmot to Goergen,,[43.1256315; -77.6292359],Goergen/Wilmot
+floor,CS02_CS04,3,no,no,no,no,yes,move from 2nd floor to 4th floor,move from 4th floor to 2nd floor,broken elevator in Computer Studies Building,,Computer Studies
+floor,CS02_CS05,4,no,no,no,no,yes,move from 2nd floor to 5th floor,move from 5th floor to 2nd floor,broken elevator in Computer Studies Building,,Computer Studies
+floor,CS02_CS06,5,no,no,no,no,yes,move from 2nd floor to 6th floor,move from 6th floor to 2nd floor,broken elevator in Computer Studies Building,,Computer Studies
+floor,CS02_CS07,6,no,no,no,no,yes,move from 2nd floor to 7th floor,move from 7th floor to 2nd floor,broken elevator in Computer Studies Building,,Computer Studies
+floor,CL01_CL02,2,no,no,no,no,yes,move from 1st floor to 2nd floor,move from 2nd floor to 1st floor,broken elevator in Carlson,,Carlson
+floor,CL01_CL03,3,no,no,no,no,yes,move from 1st floor to 3rd floor,move from 3rd floor to 1st floor,broken elevator in Carlson,,Carlson
+floor,CL02_CL03,2,no,no,no,no,yes,move from 2nd floor to 3rd floor,move from 3rd floor to 2nd floor,broken elevator in Carlson,,Carlson
+floor,GR01_GR02,2,no,no,no,no,yes,move from 1st floor to 2nd floor,move from 2nd floor to 1st floor,broken elevator in Goergen,,Goergen
+floor,GR01_GR03,3,no,no,no,no,yes,move from 1st floor to 3rd floor,move from 3rd floor to 1st floor,broken elevator in Goergen/Wilmot,,Goergen
+floor,GR01_GR04,4,no,no,no,no,yes,move from 1st floor to 4th floor,move from 4th floor to 1st floor,broken elevator in Goergen/Wilmot,,Goergen
+floor,GR01_GR05,5,no,no,no,no,yes,move from 1st floor to 5th floor,move from 5th floor to 1st floor,broken elevator in Goergen/Wilmot,,Goergen
+floor,GR02_GR03,2,no,no,no,no,yes,move from 2nd floor to 3rd floor,move from 3rd floor to 2nd floor,broken elevator in Goergen/Wilmot,,Goergen
+floor,GR02_GR04,3,no,no,no,no,yes,move from 2nd floor to 4th floor,move from 4th floor to 2nd floor,broken elevator in Goergen/Wilmot,,Goergen
+floor,GR02_GR05,4,no,no,no,no,yes,move from 2nd floor to 5th floor,move from 5th floor to 2nd floor,broken elevator in Goergen/Wilmot,,Goergen
+floor,WM01_WM02,2,no,no,no,no,yes,move from 1st floor to 2nd floor,move from 2nd floor to 1st floor,broken elevator in Goergen/Wilmot,,Wilmot
+floor,WM01_WM03,3,no,no,no,no,yes,move from 1st floor to 3rd floor,move from 3rd floor to 1st floor,broken elevator in Goergen/Wilmot,,Wilmot
+floor,WM01_WM04,4,no,no,no,no,yes,move from 1st floor to 4th floor,move from 4th floor to 1st floor,broken elevator in Goergen/Wilmot,,Wilmot
+floor,WM01_WM05,5,no,no,no,no,yes,move from 1st floor to 5th floor,move from 5th floor to 1st floor,broken elevator in Goergen/Wilmot,,Wilmot
+level,CS02_CS02A,1,no,no,no,no,yes,,,,,Computer Studies
+level,CL01_CL01A,1,no,no,no,no,yes,,,,,Carlson
+level,CL01_CL01B,1,no,no,no,no,yes,,,,,Carlson
+level,CL01_CL01C,1,no,no,no,no,yes,,,,,Carlson
+level,CL02_CL02A,1,no,no,no,no,yes,,,,,Carlson
+level,CL03_CL03A,1,no,no,no,no,yes,,,,,Carlson
+level,GR01_GR01A,1,no,no,no,no,yes,,,,,Goergen
+level,GR01_GR01B,1,no,no,no,no,yes,,,,,Goergen
+level,GR01_GR01C,1,no,no,no,no,yes,,,,,Goergen
+level,GR02_GR02A,1,no,no,no,no,yes,,,,,Goergen
+level,WM01_WM01A,1,no,no,no,no,yes,,,,,Wilmot
+path,EQPAK_RT01B,,no,no,no,no,yes,move along Morey and enter 1st floor of Rettner,leave 1st floor of Rettner and move along Morey,,[43.1288719; -77.6291943][43.1284505; -77.6299049],Wilson Quad
+path,EQPAJ_EQPAL,,no,no,no,no,yes,move towards Morey Hall,move away from Morey Hall,,[43.1286454; -77.6289473][43.1285401; -77.6292292],Eastman Quad
+path,EQPAL_WC03B,,no,no,no,no,yes,enter 3rd floor of Wilson Commons,leave 3rd floor of Wilson Commons,,[43.1285401; -77.6292292][43.1288564; -77.6294336],Eastman Quad
+path,EQPAL_EQPE,,no,no,no,no,yes,move to corner of Eastman Quad,move away from Eastman Quad,,[43.1285401; -77.6292292][43.1285274; -77.6292554][43.1284752; -77.6292172],Eastman Quad
+path,EQPAH_EQPAJ,,no,no,no,no,yes,move alongside Rush Rhees,move alongside Rush Rhees,,[43.1287427; -77.6286916][43.1286454; -77.6289473],Eastman Quad
+path,EQPAI_EQPAI,,no,no,no,no,yes,move towards Morey Hall,move away from Morey Hall,,[43.1287427; -77.6286916][43.1286773; -77.6288577],Eastman Quad
+path,DG02B_EQPAI,,no,no,no,no,yes,leave 2nd floor of Douglass,enter 2nd floor of Douglass,broken push door button entering 2nd floor of Douglass,[43.1289347; -77.6290367][43.1286773; -77.6288577],Eastman Quad
+path,DG02A_EQPAH,,no,no,no,no,yes,leave 2nd floor of Douglass,enter 2nd floor of Douglass,,[43.1290874; -77.6286397][43.1287427; -77.6286916],Eastman Quad
+path,EQPAJ_EQPAK,,yes,yes,no,no,no,go down the stairs and move to the center of the plaza,leave the plaza and go up the stairs,,[43.1286454; -77.6289473][43.128816; -77.6290697][43.1285401; -77.6292292],Eastman Quad
+path,EQPAF_EQPAG,,no,no,no,no,yes,move away from Rush Rhees,move alongside Rush Rhees,,[43.1287332; -77.6279317][43.1289277; -77.6280753],Eastman Quad
+path,EQPAG_EQPAH,,no,no,no,no,yes,move alongside Rush Rhees,move alongside Rush Rhees,,[43.1289277; -77.6280753][43.128942; -77.6281592][43.1287427; -77.6286916],Eastman Quad
+path,EQPAG_WQPO,,no,no,no,no,yes,move alongside Library Road until the entrance to Wilson Quad,move alongside Library Road until Rush Rhees,,[43.1279103; -77.6293189][43.128942; -77.6281597][43.1289727; -77.6282071][43.1293541; -77.6284267][43.1294526; -77.6285519][43.1296089; -77.6285955][43.1296668; -77.6286361],Library Road
+path,WQPM_WQPO,,no,no,no,no,yes,move alongside Douglass and leave Wilson Quad,enter Wilson Quad and move alongside Douglass,,[43.1295769; -77.6288789][43.1296668; -77.6286361],Wilson Quad
+path,WQPM_WQPN,,no,no,no,no,yes,move alongside Douglass,move alongside Douglass,,[43.1295769; -77.6288789][43.1294828; -77.6291499],Wilson Quad
+path,WQPK_WQPN,,no,no,no,no,yes,move past the clock tower towards Wilson Commons,move past the clock tower towards Douglass,,[43.1293217; -77.6295629][43.1294828; -77.6291499],Wilson Quad
+path,WQPK_WQPL,,yes,yes,no,no,no,go up the stairs to the beginning of the plaza,leave the plaza and go down the stairs,,[43.1293217; -77.6295629][43.1291335; -77.6294231],Wilson Quad
+path,DG01A_WQPM,,no,no,no,no,yes,leave Douglass and take curved path to the right,take a side path to bypass stairs and enter Douglass from the left,broken push door button entering 1st floor of Douglass,[43.1292479; -77.6289777][43.1293608; -77.628735][43.1292683; -77.6289929][43.1295769; -77.6288789],Wilson Quad
+path,EQPAK_WQPL,,no,no,no,no,no,move to the edge of the plaza by the front of Douglass,move to the center of the plaza,,[43.1288719; -77.6291943][43.1289073; -77.6292663][43.1291335; -77.6294231],Wilson Quad
+path,WQPJ_WQPK,,no,no,no,no,yes,move towards the clock tower,move away from the clock tower,,[43.1292371; -77.6297858][43.1293217; -77.6295629],Wilson Quad
+path,WQPI_WQPJ,,no,no,no,no,yes,move alongside Wilson Commons,move alongside Wilson Commons,,[43.1291383; -77.6300524][43.1292371; -77.6297858],Wilson Quad
+path,WQPI_WQPP,,no,no,no,no,yes,move along Wilson Commons stairs,move along Wilson Commons stairs,,[43.1291383; -77.6300524][43.1292371; -77.6297858],Wilson Quad
+path,WQPC_WQPI,,no,no,no,no,yes,move towards Wilson Commons,move away from Wilson Commons,,[43.1289216; -77.6306342][43.1291383; -77.6300524],Wilson Quad
+path,WQPG_WQPQ,,no,no,no,no,yes,move alongside Rettner Hall towards Wilson Commons,move alongside Rettner Hall towards Lattimore,,[43.1285042; -77.6303344][43.1287193; -77.6302396],Wilson Quad
+path,RT01A_WQPQ,,no,no,no,no,yes,leave 1st floor of Rettner,enter 1st floor of Rettner,broken push door button entering 1st floor of Rettner facing Crosby,[43.1286775; -77.630216][43.1287193; -77.6302396],Wilson Quad
+path,WC02A_WQPP,,no,no,no,no,yes,leave 2nd floor of Wilson Commons,enter 2nd floor of Wilson Commons,,[43.1289034; -77.6300559][43.128898; -77.6301587],Wilson Quad
+path,WQPP_WQPQ,,no,no,no,no,yes,move away from Wilson Commons towards Rettner,move away from Rettner towards Wilson Commons,,[43.128898; -77.6301587][43.1287193; -77.6302396],Wilson Quad
+path,DG01A_WQPN,,yes,yes,no,no,no,leave 1st floor of Douglass and go down the stairs,go up the stairs and enter 1st floor of Douglass,broken push door button entering 1st floor of Douglass,[43.1292479; -77.6289777][43.1294828; -77.6291499],Wilson Quad
+path,WQPL_WQPN,,yes,yes,no,no,no,move to Douglass entrance turn left and go down the stairs,go up the stairs turn right and move the beginning of plaza between Douglass and Wilson Commons,,[43.1291335; -77.6294231][43.1293608; -77.628735][43.1294828; -77.6291499],Wilson Quad
+path,WQPL_WQPM,,no,no,no,no,yes,move just past the Douglass entrance and take curved path to the left,take a side path to bypass stairs turn right and move the beginning of plaza between Douglass and Wilson Commons,,[43.1291335; -77.6294231][43.1292683; -77.6289929][43.1295769; -77.6288789],Wilson Quad
