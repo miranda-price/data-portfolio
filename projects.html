@@ -72,7 +72,133 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    
+                    <h2 id="import-libraries-and-dataset">Import libraries and dataset</h2>
+                    <p>Key libraries:</p>
+                    <ul>
+                    <li>Numpy, Pandas, Matplotlib, and Scikit-learn for data processing and analysis</li>
+                    <li>TensorFlow to build the CNN model</li>
+                    <li>OpenCV for image processing</li>
+                    </ul>
+                    <p>The dataset:</p>
+                    <p><a href="https://www.kaggle.com/datasets/kanaadlimaye/alzheimers-classification-dataset">https://www.kaggle.com/datasets/kanaadlimaye/alzheimers-classification-dataset</a></p>
+                    <p>9,600 already expanded MRI scans labeled with four separate classes:</p>
+                    <ol>
+                    <li>No dementia (brain_nd)</li>
+                    <li>Very mild dementia (brain_vmd)</li>
+                    <li>Mild dementia (brain_md)</li>
+                    <li>Moderate dementia (brain_mod)</li>
+                    </ol>
+                    <pre><code><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+                    <span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+                    <span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+                    from PIL <span class="hljs-keyword">import</span> Image
+                    from glob <span class="hljs-keyword">import</span> glob
+
+                    from sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+                    from sklearn <span class="hljs-keyword">import</span> metrics
+
+                    <span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
+                    from tensorflow <span class="hljs-keyword">import</span> keras
+                    from keras <span class="hljs-keyword">import</span> layers
+
+                    <span class="hljs-keyword">import</span> warnings
+                    warnings.filterwarnings(<span class="hljs-string">'ignore'</span>)
+                    </code></pre><h2 id="visualize-the-data">Visualize the data</h2>
+                    <p>To get a better idea of what each class of lung image looks like, 4 images from each class will be randomly selected.</p>
+                    <pre><code><span class="hljs-keyword">import</span> <span class="hljs-built_in">os</span>
+
+                    path = <span class="hljs-string">'datasets/Alzheimers_Detection_dataset'</span>
+                    classes = [<span class="hljs-string">'brain_nd'</span>, <span class="hljs-string">'brain_vmd'</span>, <span class="hljs-string">'brain_md'</span>, <span class="hljs-string">'brain_mod'</span>]
+
+                    <span class="hljs-keyword">for</span> cat <span class="hljs-keyword">in</span> <span class="hljs-name">classes</span>:
+                        # <span class="hljs-built_in">select</span> images <span class="hljs-keyword">in</span> <span class="hljs-class"><span class="hljs-keyword">class</span>'<span class="hljs-title">s</span> <span class="hljs-title">folder</span></span>
+                        image_dir = f<span class="hljs-string">'{path}/{cat}'</span>
+                        images = <span class="hljs-built_in">os</span>.listdir(image_dir)
+
+                        fig, ax = plt.subplots(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, figsize=(<span class="hljs-number">20</span>, <span class="hljs-number">5</span>))
+                        fig.suptitle(f<span class="hljs-string">'{cat} class'</span>, fontsize=<span class="hljs-number">25</span>)
+
+                        # <span class="hljs-built_in">select</span> <span class="hljs-number">4</span> random images <span class="hljs-keyword">from</span> folder
+                        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">4</span>):
+                            k = np.random.randint(<span class="hljs-number">0</span>, len(images))
+                            img = np.array(Image.open(f<span class="hljs-string">'{path}/{cat}/{images[k]}'</span>))
+                            ax[i].imshow(img)
+                            ax[i].axis(<span class="hljs-string">'off'</span>)
+                        plt.show()
+                    </code>
+                    <img src="content/alzheimers-images.png" alt="4x4 grid of pictures showing mri images of brains with various stages of dementia" class="shadow" height="400px">
+                </pre><h2 id="preprocessing">Preprocessing</h2>
+                    <ul>
+                    <li>Images are already 224x224 and do not need to be resized</li>
+                    <li>Replace class labels with hot encoding dummy variables</li>
+                    <li>Split dataset into train and test sets with  a 70-30 split </li>
+                    </ul>
+                    <pre><code>import cv2
+
+                    <span class="hljs-keyword">X</span> = [] # images
+                    Y = [] # corresponding label
+
+                    <span class="hljs-keyword">for</span> i, <span class="hljs-keyword">cat</span> in enumerate(classes):
+                    images = <span class="hljs-built_in">glob</span>(<span class="hljs-keyword">f</span><span class="hljs-string">'{path}/{cat}/*[.jpeg].*'</span>)
+
+                    <span class="hljs-keyword">for</span> image in image<span class="hljs-variable">s:</span>
+                        img = cv2.imread(image)
+
+                        <span class="hljs-keyword">X</span>.<span class="hljs-keyword">append</span>(img)
+                        Y.<span class="hljs-keyword">append</span>(i)
+
+                    # convert <span class="hljs-keyword">to</span> array <span class="hljs-built_in">and</span> <span class="hljs-built_in">get</span> dummy variables
+                    <span class="hljs-keyword">X</span> = np.asarray(<span class="hljs-keyword">X</span>)
+                    one_hot_encoded_Y = pd.get_dummies(Y).<span class="hljs-built_in">values</span>
+
+                    # <span class="hljs-number">70</span>/<span class="hljs-number">30</span> <span class="hljs-keyword">split</span>
+                    X_train, X_val, Y_train, Y_val = train_test_split(<span class="hljs-keyword">X</span>, one_hot_encoded_Y, test_size=<span class="hljs-number">0.3</span>, random_state=<span class="hljs-number">42</span>)
+                    </code></pre><h2 id="create-the-model">Create the model</h2>
+                    <h3 id="define-model-architecture">Define model architecture</h3>
+                    <pre><code>model = keras.models.Sequential([
+                        layers.Conv2D(filters=<span class="hljs-number">28</span>, kernel_size=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), activation='relu', input_shape=(<span class="hljs-number">224</span>, <span class="hljs-number">224</span>, <span class="hljs-number">3</span>), padding='same'),
+                        layers.MaxPooling2D(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>),
+
+                        layers.Conv2D(filters=<span class="hljs-number">56</span>, kernel_size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>), activation='relu', padding='same'),
+                        layers.MaxPooling2D(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>),
+
+                        layers.Conv2D(filters=<span class="hljs-number">112</span>, kernel_size=(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>), activation='relu', padding='same'),
+                        layers.MaxPooling2D(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>),
+
+                        layers.Flatten(),
+                        layers.Dense(<span class="hljs-number">224</span>, activation='relu'),
+                        layers.BatchNormalization(),
+                        layers.Dense(<span class="hljs-number">112</span>, activation='relu'),
+                        layers.Dropout(<span class="hljs-number">0.3</span>),
+                        layers.BatchNormalization(),
+                        layers.Dense(<span class="hljs-number">4</span>, activation='softmax')
+                    ])
+                    </code></pre><h3 id="compile-model">Compile model</h3>
+                    <pre><code>from keras.callbacks <span class="hljs-built_in">import</span> EarlyStopping, ReduceLROnPlateau
+                    <span class="hljs-attr">es</span> = EarlyStopping(<span class="hljs-attr">patience=3,</span> <span class="hljs-attr">monitor='val_accuracy',</span> <span class="hljs-attr">restore_best_weights=True)</span>
+                    <span class="hljs-attr">lr</span> = ReduceLROnPlateau(<span class="hljs-attr">monitor='val_loss',</span> <span class="hljs-attr">patience=2,</span> <span class="hljs-attr">factor=0.5,</span> <span class="hljs-attr">verbose=1)</span>
+                    model.compile(<span class="hljs-attr">optimizer='adam',</span> <span class="hljs-attr">loss='categorical_crossentropy',</span> <span class="hljs-attr">metrics=['accuracy'])</span>
+                    </code></pre><h3 id="train-model">Train model</h3>
+                    <pre><code><span class="hljs-attr">history</span> = model.fit(X_train, Y_train,
+                        <span class="hljs-attr">validation_data</span> = (X_val, Y_val),
+                        <span class="hljs-attr">batch_size</span> = <span class="hljs-number">56</span>,
+                        <span class="hljs-attr">epochs</span> = <span class="hljs-number">10</span>,
+                        <span class="hljs-attr">verbose</span> = <span class="hljs-number">1</span>,
+                        <span class="hljs-attr">callbacks</span> = [es, lr])
+                    </code></pre><h2 id="evaluate-model">Evaluate model</h2>
+                    <pre><code><span class="hljs-comment"># visualize model accuracy</span>
+                    history_df = pd.DataFrame(<span class="hljs-keyword">history</span>.<span class="hljs-keyword">history</span>)
+                    history_df.loc[:,[<span class="hljs-string">'accuracy'</span>,<span class="hljs-string">'val_accuracy'</span>]].plot()
+                    </code></pre>
+                    <img src="content/alzheimers-acc.png" class="shadow" alt="line chart showing accuracy of model with each epoch" height="300px">
+                    <pre><code><span class="hljs-comment"># additional model evaluation metrics</span>
+                    <span class="hljs-attr">Y_pred</span> = model.predict(X_val)
+                    <span class="hljs-attr">Y_val</span> = np.argmax(Y_val, <span class="hljs-attr">axis=1)</span>
+                    <span class="hljs-attr">Y_pred</span> = np.argmax(Y_pred, <span class="hljs-attr">axis=1)</span>
+                    print(metrics.classification_report(Y_val, Y_pred, <span class="hljs-attr">target_names=classes))</span>
+                    </code></pre>
+                    <img src="content/alzheimers-class-report.png" class="shadow" alt="classification report of model performance" height="300px"><p>The CNN model is very accurate at predicting if an an MRI image shows moderate dimension, but is less accurate at correctly identifying mild and no dementia.  Overall, the accuracy of 0.85 suggests the model is a fairly good predictor and unlikely to be overfitting.</p>
+
 
                 </div>
                 </div>
