@@ -821,6 +821,114 @@
             </div>
         </div>
 
+        <div class="card projects-card r-project" id="mag-card">
+        <img src="content/mag-age-dist.png" class="card-img-top" alt="Bar chart showing distribution of visitor age groups">
+        <div class="card-body">
+                <div class="d-flex justify-content-between"><h3 class="card-title">Memorial Art Gallery Research</h3><h4>R</h4></div>
+                <p class="card-text">Group semseter-long research project completed for PSYCH 219: Research Methods in Psychology determining the impact of guided tours on visitor experience.</p>
+                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#mag-modal">
+                    Read more
+                </button>
+            </div>
+        </div>
+
+        <div class="modal fade modal-lg" id="mag-modal" tabindex="-1" aria-labelledby="MAG Research Project Writeup" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Memorial Art Gallery Research</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2 id="impact-of-guided-tours">Impact of Guided Tours</h2>
+                    <p>Group semseter-long research project completed for PSYCH 219: Research Methods in Psychology</p>
+                    <p><strong>Tools:</strong> Qualtrics, Rstudio</p>
+                    <h2 id="define-the-problem">Define the Problem</h2>
+                    <p><strong>What impact do guided tours have on visitors&#39; experience when visiting the Memorial Art Gallery in Rochester, NY?</strong></p>
+                    <h3 id="dataset-">Dataset:</h3>
+                    <p>mag-r-data.csv, survey data collected from those visiting the MAG that agreed to take a survey<br>23 fields, 34 observations</p>
+                    <p><em>Note: dataset has been altered from initial qualtrics csv data.  Column names were changed to remove duplicates and increase readability, and columns irrelevant to survey and analysis (i.e. IP address) were removed.</em></p>
+                    <h3 id="restrictions">Restrictions</h3>
+                    <ul>
+                    <li>Participants had to be at least 18 years old to comply with university standards for research involving human test subjects</li>
+                    <li>Participants had to finish the survey before leaving the MAG, as they were using gallery property to take the survey</li>
+                    </ul>
+                    <h2 id="participant-demographics">Participant Demographics</h2>
+                    <img src="content/mag-age-dist.png" class="shadow" alt="bar chart of age distribution" height="300px">
+                    <ul>
+                    <li>34 participants surveyed </li>
+                    <li>Bimodal distribution of age<ul>
+                    <li>Majority either between the ages of 18 and 24 or over 65</li>
+                    </ul>
+                    </li>
+                    <li>More even distribution of first-time vs returning visitors <ul>
+                    <li>55.9% first-time visitors</li>
+                    <li>44.1% return visitors</li>
+                    </ul>
+                    </li>
+                    <li>Reasons for visit<ul>
+                    <li>55.9% leisure</li>
+                    <li>17.6% academic</li>
+                    <li>11.8% visit with family and friends</li>
+                    </ul>
+                    </li>
+                    </ul>
+                    <img src="content/mag-reasons-visit.png" class="shadow" alt="pie chart of different reasons for visiting" height="300px">
+                    <h2 id="findings-and-insights">Findings and Insights</h2>
+                    <h3 id="impact-of-guided-tours">Impact of Guided Tours</h3>
+                    <img src="content/mag-enhance.png" class="shadow" alt="bar chart showing expected improvement with tour" height="300px">
+                    <ul>
+                    <li>Only 2 participants participated in a guided tour on the day they were surveyed<ul>
+                    <li>Both rated their guided tour experience as being extremely helpful</li>
+                    <li>25 of the 32 participants that did not have a tour on the day they were surveyed reported they thought a tour probably would have improved their visit</li>
+                    </ul>
+                    </li>
+                    <li>Satisfaction<ul>
+                    <li>Participants that had a tour had an average satisfaction score of 5 (extremely satisfied)</li>
+                    <li>Participants that did not have a tour had an average satisfaction score of 4.2</li>
+                    </ul>
+                    </li>
+                    <li>Learning Outcome<ul>
+                    <li>Participants that had a tour had an average reported learning outcome of 3.5</li>
+                    <li>Participants that did not have a guided tour had an average of 3.1</li>
+                    </ul>
+                    </li>
+                    <li>There were not enough participants that had a tour to conduct statistical inference tests, however the admittedly small dataset suggests that guided tours can improve both visitor satisfaction and learning outcomes</li>
+                    </ul>
+                    <h3 id="preferences-for-tours">Preferences for Tours</h3>
+                    <img src="content/mag-length.png" class="shadow" alt="bar chart showing prefered tour length" height="300px">
+                    <ul>
+                    <li>The majority of participants expressed wanting a guided tour to
+                    be either 15-30 minutes or 30-60 minutes in length</li>
+                    <li>Participants also expressed a strong interest in having a human tour guide instead of using self-guided tour materials</li>
+                    <img src="content/mag-tour-type.png" class="shadow" alt="pie chart showing perfered tour type" height="300px">
+                    <li>Of the self guided tour options, audio tours and pamphlets/brochures were the most favored<ul>
+                    <li>The participant’s reported frequency of visiting museums (in general, not specifically the Memorial Art Gallery) seemed to have an effect on the type of tour the participant preferred</li>
+                    <li>Infrequent visitors were much more receptive to using augmented reality self-guided materials</li>
+                    <li>More frequent visitors were slightly more likely to prefer audio tours</li>
+                    </ul>
+                    </li>
+                    <li>Results were varied, but ultimately favorable, for use of
+                    newer technologies in guided tours, specifically the use of robots, artificial intelligence, and augmented reality in tours<ul>
+                    <li>Participants aged 65 and older were the most variable in
+                    their opinions on new technologies in museum tours</li>
+                    <li>Those aged 55 to 64 were the least favorable to these new technologies,</li>
+                    <li>Those aged 25 to 34 were the most favorable</li>
+                    </ul>
+                    </li>
+                    </ul>
+                    <img src="content/mag-age-tech.png" class="shadow" alt="box plots showing attitude towards new technology in tours by age group" height="300px">
+                    <h2 id="future-studies">Future Studies</h2>
+                    <ul>
+                    <li>Repeat study with a larger sample, particularly for participants that had a guided tour</li>
+                    <li>Compare knowledge before and after a tour to see efficacy</li>
+                    </ul>
+
+                </div>
+                </div>
+            </div>
+        </div>
+
     <div class="card projects-card python-project pandas-project" id="movies-profit-card">
         <img src="content/movies-profit-card.png" class="card-img-top" alt="scatter plots with regression lines showing relationships between movie profitability and worldwide gross and budget">
         <div class="card-body">
